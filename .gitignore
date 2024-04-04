@@ -131,3 +131,7 @@ dist
 
 # composer
 vendor/
+
+# build output
+/source/build/
+/source/build/*
