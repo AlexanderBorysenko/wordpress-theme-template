@@ -2,6 +2,8 @@ import { defineConfig } from 'vite';
 import sassGlobImports from 'vite-plugin-sass-glob-import';
 import ViteRestart from './ViteRestart';
 import cssPurge from 'vite-plugin-purgecss';
+import postCssSortMediaQueries from 'postcss-sort-media-queries';
+import postcssCombineMediaQuery from 'postcss-combine-media-query';
 
 // plugin which finds file paths in scss, moves them to the build folder and replaces the url() with the new path
 const cssUrlImagesLoader = () => {
@@ -45,13 +47,13 @@ export default defineConfig({
 		assetsDir: './',
 		rollupOptions: {
 			input: {
-				app: './app.ts',
-				'wp-admin': './wp-admin.ts'
+				app: './entrypoints/app.ts',
+				'wp-admin': './entrypoints/wp-admin.ts'
 			}
 		}
 	},
 	plugins: [
-		// cssUrlImagesLoader(),
+		cssUrlImagesLoader(),
 		sassGlobImports(),
 		ViteRestart({
 			restart: ['./styles/**/*', './components/**/*', '../**/*.jsx']
@@ -59,5 +61,15 @@ export default defineConfig({
 		cssPurge({
 			content: ['../**/*.php', '../**/*.jsx', '../**/*.html']
 		})
-	]
+	],
+	css: {
+		postcss: {
+			plugins: [
+				postCssSortMediaQueries({
+					sort: 'desktop-first'
+				}),
+				postcssCombineMediaQuery()
+			]
+		}
+	}
 });

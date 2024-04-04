@@ -1,5 +1,5 @@
 /*! purgecss start ignore */
-@import './styles/variables.scss';
+@import './variables.scss';
 
 .wp-block.wp-block-post-title {
 	font-size: 4rem;
@@ -55,7 +55,7 @@ html :where(.wp-block) {
 }
 
 .is-root-container {
-	@import './styles/ext/reset.scss';
+	@import './ext/reset.scss';
 	* {
 		line-height: 1.21;
 	}
@@ -67,19 +67,19 @@ html :where(.wp-block) {
 		padding: 0;
 		box-sizing: border-box;
 	}
-	@import './styles/ext/fonts.scss';
-	@import './styles/ext/html.scss';
-	@import './styles/ext/body.scss';
-	@import './styles/ext/scrollbar.scss';
-	@import './styles/ext/default-typography-styling.scss';
-	@import './styles/ext/swiper.scss';
+	@import './ext/fonts.scss';
+	@import './ext/html.scss';
+	@import './ext/body.scss';
+	@import './ext/scrollbar.scss';
+	@import './ext/default-typography-styling.scss';
+	@import './ext/swiper.scss';
 
-	@import './styles/library/connector.scss';
+	@import './library/connector.scss';
 
-	@import './styles/wrappers/**/*.scss';
-	@import './styles/decorations/**/*.scss';
+	@import './wrappers/**/*.scss';
+	@import './decorations/**/*.scss';
 
-	@import './components/**/*.scss';
+	@import '../components/**/*.scss';
 }
 
 .has-ui-select-helper[data-type^='blocks/'] {
@@ -100,7 +100,7 @@ html :where(.wp-block) {
 [data-type='core/spacer'] {
 	background: #ededed;
 }
-@import './styles/wrappers/typography-content-wrapper.scss';
+@import './wrappers/typography-content-wrapper.scss';
 .post-type-blog .is-root-container {
 	@include typography-content-wrapper;
 	max-width: 900px;
