@@ -1,0 +1,24 @@
+:root {
+	--header-height: 5.5rem;
+}
+@media (max-width: 1150px) {
+	:root {
+		--header-height: 4.5rem;
+	}
+}
+
+.header {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: #fff;
+	border-bottom: 1px solid #d5dadc;
+	z-index: 10;
+	&__inner {
+		display: flex;
+		align-items: center;
+		justify-content: space-between;
+		height: var(--header-height);
+	}
+}

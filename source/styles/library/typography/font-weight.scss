@@ -1,0 +1,5 @@
+@each $key, $font-weight in $font-weights {
+	.fw-#{$key} {
+		font-weight: $font-weight;
+	}
+}

@@ -1,0 +1,15 @@
+@mixin opacity-classes($key, $value) {
+	.opc-#{$key} {
+		opacity: $value;
+
+		&--on-hover {
+			&:hover {
+				opacity: $value;
+			}
+		}
+	}
+}
+
+@each $opacity, $value in $opacities {
+	@include opacity-classes($opacity, $value);
+}

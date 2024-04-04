@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "blocks/image",
+	"version": "0.1.0",
+	"title": "Image",
+	"category": "theme-blocks",
+	"icon": "format-image",
+	"keywords": [
+		"image",
+		"photo",
+		"picture",
+		"media",
+		"img"
+	],
+	"description": "",
+	"supports": {
+		"html": false
+	},
+	"example": {},
+	"textdomain": "blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor-style.css"
+}

@@ -1,0 +1,23 @@
+@mixin dimensional-sizing-classes($breakpoint: '') {
+	@if $breakpoint != '' {
+		$breakpoint: -#{$breakpoint};
+	}
+	@each $key, $value in $width-sizing-options {
+		.w#{$breakpoint}-#{$key} {
+			width: $value;
+		}
+	}
+	@each $key, $value in $height-sizing-options {
+		.h#{$breakpoint}-#{$key} {
+			height: $value;
+		}
+	}
+}
+
+@include dimensional-sizing-classes();
+
+@each $breakpoint, $breakpointWidth in $breakpoints {
+	@media (max-width: $breakpointWidth) {
+		@include dimensional-sizing-classes($breakpoint);
+	}
+}

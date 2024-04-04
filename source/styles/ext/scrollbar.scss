@@ -1,0 +1,14 @@
+::-webkit-scrollbar {
+	width: 2px;
+}
+::-webkit-scrollbar-track {
+	background: #939397;
+}
+::-webkit-scrollbar-thumb {
+	background: #ffb017;
+}
+// for firefox
+* {
+	scrollbar-color: #ffb017 #939397;
+	scrollbar-width: thin;
+}

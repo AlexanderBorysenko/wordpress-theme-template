@@ -1,0 +1,85 @@
+$min-padding-threshold: 1rem;
+
+// Mixin for generating padding classes
+@mixin generate-paddings {
+	@each $key, $value in $padding-values {
+		.p-#{$key} {
+			padding: $value;
+		}
+		.pt-#{$key} {
+			padding-top: $value;
+		}
+		.pb-#{$key} {
+			padding-bottom: $value;
+		}
+		.pl-#{$key} {
+			padding-left: $value;
+		}
+		.pr-#{$key} {
+			padding-right: $value;
+		}
+	}
+}
+
+// Include base padding classes
+@include generate-paddings;
+
+// Generate responsive padding classes
+@each $breakpoint-name, $breakpoint-value in $breakpoints {
+	@media (max-width: $breakpoint-value) {
+		@each $padding-key, $padding-value in $padding-values {
+			@if map-has-key($breakpoint-multipliers, $breakpoint-name) and
+				type-of($padding-value) ==
+				'number' and
+				$padding-value !=
+				0
+			{
+				$multiplier: map-get($breakpoint-multipliers, $breakpoint-name);
+				$adjusted-padding: $padding-value * $multiplier;
+				@if $adjusted-padding > $min-padding-threshold {
+					.p-#{$padding-key} {
+						padding: $adjusted-padding;
+					}
+					.pt-#{$padding-key} {
+						padding-top: $adjusted-padding;
+					}
+					.pb-#{$padding-key} {
+						padding-bottom: $adjusted-padding;
+					}
+					.pl-#{$padding-key} {
+						padding-left: $adjusted-padding;
+					}
+					.pr-#{$padding-key} {
+						padding-right: $adjusted-padding;
+					}
+				}
+			}
+
+			@if map-has-key($specific-padding-breakpoints, $padding-key) {
+				$specific-breakpoints: map-get(
+					$specific-padding-breakpoints,
+					$padding-key
+				);
+				@if index($specific-breakpoints, $breakpoint-name) or
+					index($specific-breakpoints, 'initial')
+				{
+					.p-#{$breakpoint-name}-#{$padding-key} {
+						padding: $padding-value !important;
+					}
+					.pt-#{$breakpoint-name}-#{$padding-key} {
+						padding-top: $padding-value !important;
+					}
+					.pb-#{$breakpoint-name}-#{$padding-key} {
+						padding-bottom: $padding-value !important;
+					}
+					.pl-#{$breakpoint-name}-#{$padding-key} {
+						padding-left: $padding-value !important;
+					}
+					.pr-#{$breakpoint-name}-#{$padding-key} {
+						padding-right: $padding-value !important;
+					}
+				}
+			}
+		}
+	}
+}

@@ -1,1 +1,1 @@
-# wordpress-theme-template
+# homes-by-creation-wordpress

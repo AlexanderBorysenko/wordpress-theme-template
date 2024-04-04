@@ -1,0 +1,36 @@
+@mixin displaying-classes($breakpoint: '') {
+	@if $breakpoint != '' {
+		$breakpoint: -#{$breakpoint};
+	}
+
+	.hidden#{$breakpoint} {
+		visibility: hidden;
+	}
+	.visible#{$breakpoint} {
+		visibility: visible;
+	}
+	.block#{$breakpoint} {
+		display: block;
+	}
+	.none#{$breakpoint} {
+		@if $breakpoint == '' {
+			display: none;
+		} @else {
+			display: none !important;
+		}
+	}
+	.relative#{$breakpoint} {
+		position: relative;
+	}
+	.overflow-hidden#{$breakpoint} {
+		overflow: hidden;
+	}
+}
+
+@include displaying-classes;
+
+@each $breakpoint, $breakpointWidth in $breakpoints {
+	@media (max-width: $breakpointWidth) {
+		@include displaying-classes($breakpoint);
+	}
+}

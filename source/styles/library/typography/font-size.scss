@@ -1,0 +1,41 @@
+@mixin generate-font-sizes {
+	// Generate base font size classes
+	@each $key, $initial-size in $font-sizes {
+		.fs-#{$key} {
+			font-size: $initial-size;
+		}
+	}
+
+	// Generate media queries for each breakpoint
+	@each $breakpoint, $bp-value in $breakpoints {
+		@media (max-width: $bp-value) {
+			@each $key, $initial-size in $font-sizes {
+				$current-multiplier: map-get(
+					$breakpoint-multipliers,
+					$breakpoint
+				);
+				@if $current-multiplier != null {
+					$adjusted-size: $initial-size * $current-multiplier;
+
+					@if ($adjusted-size >= 2rem and $initial-size <= 2.5rem) or
+						(
+							$adjusted-size >= 2.5rem and $initial-size <= 3.5rem
+						) or
+						($adjusted-size >= 3.5rem and $initial-size <= 6.5rem)
+					{
+						.fs-#{$key} {
+							font-size: $adjusted-size;
+						}
+					}
+				}
+			}
+		}
+	}
+}
+@include generate-font-sizes;
+
+// @each $breakpoint, $breakpointWidth in $breakpoints {
+// 	@media (max-width: $breakpointWidth) {
+// 		@include font-size-classes($breakpoint);
+// 	}
+// }

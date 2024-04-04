@@ -1,0 +1,30 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "blocks/configurable-text",
+	"version": "0.1.0",
+	"title": "Configurable Text",
+	"category": "theme-blocks",
+	"keywords": [
+		"heading",
+		"paragraph",
+		"text",
+		"configurable"
+	],
+	"supports": {
+		"html": false,
+		"anchor": true
+	},
+	"attributes": {},
+	"example": {
+		"attributes": {
+			"content": "Hello <strong><span class='underline-decoration'>World</span></strong>",
+			"tagName": "h2",
+			"fontSize": "fs-2",
+			"lineHeight": "lh-75"
+		}
+	},
+	"textdomain": "blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./editor-style.css"
+}

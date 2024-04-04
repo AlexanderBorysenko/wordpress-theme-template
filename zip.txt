@@ -1,0 +1,1 @@
+zip -r output.zip . -x '*.git*' -x '*node_modules*'

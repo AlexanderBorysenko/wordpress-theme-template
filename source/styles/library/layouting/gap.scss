@@ -1,0 +1,32 @@
+@mixin gap-classes($breakpoint: '') {
+	@if $breakpoint != '' {
+		$breakpoint: -#{$breakpoint};
+	}
+
+	@each $key, $value in $layout-gaps {
+		@each $direction in ('', '-h', '-v') {
+			.gap#{$direction}#{$breakpoint}-#{$key},
+			
+			// start admin style
+			.gap#{$direction}#{$breakpoint}-#{$key}>.block-editor-inner-blocks>.block-editor-block-list__layout
+			// end admin style
+			{
+				@if $direction == '' {
+					gap: $value;
+				} @else if $direction == '-h' {
+					grid-column-gap: $value;
+				} @else if $direction == '-v' {
+					grid-row-gap: $value;
+				}
+			}
+		}
+	}
+}
+
+@include gap-classes();
+
+@each $breakpoint, $breakpointWidth in $breakpoints {
+	@media (max-width: $breakpointWidth) {
+		@include gap-classes($breakpoint);
+	}
+}

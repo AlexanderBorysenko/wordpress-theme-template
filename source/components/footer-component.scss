@@ -1,0 +1,10 @@
+.footer {
+	color: #fff;
+	background: #141d21;
+	&__inner {
+		padding-left: 2rem;
+		@media (max-width: $middle-desktop-width) {
+			padding-left: 0;
+		}
+	}
+}

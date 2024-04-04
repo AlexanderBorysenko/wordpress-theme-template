@@ -1,0 +1,19 @@
+@mixin line-height-classes($breakpoint: '') {
+	@if $breakpoint != '' {
+		$breakpoint: -#{$breakpoint};
+	}
+
+	@each $key, $line-height in $line-heights {
+		.lh#{$breakpoint}-#{$key} {
+			line-height: $line-height;
+		}
+	}
+}
+
+@include line-height-classes();
+
+@each $breakpoint, $breakpointWidth in $breakpoints {
+	@media (max-width: $breakpointWidth) {
+		@include line-height-classes($breakpoint);
+	}
+}
