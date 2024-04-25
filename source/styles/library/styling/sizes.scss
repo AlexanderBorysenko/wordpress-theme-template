@@ -1,0 +1,21 @@
+@use 'sass:list';
+
+:root {
+	@each $size, $values in $sizes {
+		--size-#{$size}: #{list.nth($values, 1)};
+	}
+	@media (max-width: $small-desktop-width) {
+		@each $size, $values in $sizes {
+			@if list.length($values) >= 2 {
+				--size-#{$size}: #{list.nth($values, 2)};
+			}
+		}
+	}
+	@media (max-width: $mobile-width) {
+		@each $size, $values in $sizes {
+			@if list.length($values) >= 3 {
+				--size-#{$size}: #{list.nth($values, 3)};
+			}
+		}
+	}
+}

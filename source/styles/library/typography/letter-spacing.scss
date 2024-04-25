@@ -1,5 +1,0 @@
-@each $key, $letter-spacing in $letter-spacings {
-	.ls-#{$key} {
-		letter-spacing: $letter-spacing;
-	}
-}

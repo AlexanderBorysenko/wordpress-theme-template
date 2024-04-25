@@ -1,11 +1,24 @@
+.dark-theme {
+	color: rgb(251, 249, 241);
+}
+.light-theme {
+	color: var(--color-black-text);
+}
 body {
 	height: 100%;
 	overflow-x: clip;
 	line-height: 1.21;
-	font-family: 'Anek Latin', sans-serif;
+
+	font-family: 'Manrope', sans-serif;
 	color: var(--color-black);
-	margin-top: var(--header-height);
+	margin-top: calc(var(--header-height) + 8px);
 	* {
 		line-height: inherit;
+	}
+	&.dark-theme {
+		background-color: var(--color-black);
+	}
+	&.light-theme {
+		background-color: var(--color-light-grey);
 	}
 }

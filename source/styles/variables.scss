@@ -1,21 +1,7 @@
-$middle-desktop-width: 1441px;
+$middle-desktop-width: 1568px;
 $small-desktop-width: 1281px;
 $tablet-width: 1080px;
-$large-mobile-width: 768px;
-$mobile-width: 576px;
-
-:root {
-	--color-blue: linear-gradient(#0179c1, #2b539f);
-	--color-black: #141d21;
-	--color-semi-grey: #f6f7f7;
-	--color-light-grey: #EDEFF0;
-	--color-dark-grey: #485d66;
-	--color-grey: #8b989e;
-	--color-primary: #3B55A4;
-	--color-btn-blue: #3B55A4;
-	--color-semi-white: #F6F7F7
-	--color-dark-blue: #0C1546;
-}
+$mobile-width: 620px;
 
 $breakpoints: (
 	'mdw': $middle-desktop-width,
@@ -23,211 +9,86 @@ $breakpoints: (
 	'tw': $tablet-width,
 	'mw': $mobile-width
 );
-$breakpoint-multipliers: (
-	'mdw': 0.95,
-	'sdw': 0.8,
-	'tw': 0.75,
-	'mw': 0.65
-);
 
-$container-width: 1520px;
-$container-padding: 1rem;
+:root {
+	--large-ui-component-height: 3.5rem;
+}
 
-// initial gap for layouting
-$default-layout-gap: 0;
-
-$padding-values: (
-	// 1px
-	'0-1': 0.1rem,
-	// 8px
-	'0-5': 0.5rem,
-	// 16px
-	'1': 1rem,
-	// 24px
-	'1-5': 1.5rem,
-	// 32px
-	'2': 2rem,
-	// 40px
-	'2-5': 2.5rem,
-	// 48px
-	'3': 3rem,
-	// 64px
-	'4': 4rem,
-	// 80px
-	'5': 5rem,
-	// 86px
-	'5-375': 5.375rem,
-	// 88px
-	'5-5': 5.5rem,
-	// 104px
-	'6-5': 6.5rem,
-	// 116px
-	'7-25': 7.25rem,
-	// 128px
-	'8': 8rem,
-	// 144px
-	'9': 9rem,
-	'0': 0
-);
-$specific-padding-breakpoints: (
-	'0': (
-		'mdw',
-		'tw',
-		'mw'
-	),
+$sizes: (
 	'1': (
-		'mw'
-	)
-);
-
-$margin-values: (
-	'0': 0,
-	'auto': auto,
-	// 4px
-	'0-25': 0.25rem,
-	// 8px
-	'0-5': 0.5rem,
-	// 12px
-	'0-75': 0.75rem,
-	// 16px
-	'1': 1rem,
-	// 24px
-	'1-5': 1.5rem,
-	'2': 2rem,
-	// 32px
-	'2-5': 2.5rem,
-	// 44px
-	'2-75': 2.75rem,
-	// 48px
-	'3': 3rem,
-	// 56px
-	'3-5': 3.5rem,
-	// 64px
-	'4': 4rem,
-	// 80px
-	'5': 5rem,
-	// 88px
-	'5-5': 5.5rem,
-	// 96px
-	'6': 6rem,
-	// 96px
-	'7-75': 7.75rem
-);
-
-$specific-margin-breakpoints: (
-	'0': (
-		'sdw',
-		'mdw',
-		'tw',
-		'mw'
+		1rem
 	),
-	'auto': (
-		'mdw',
-		'tw',
-		'mw'
+	'1-125': (
+		1.125rem,
+		1rem
+	),
+	'1-25': (
+		1.25rem,
+		1.125rem
+	),
+	'1-5': (
+		1.5rem,
+		1.25rem
+	),
+	'2': (
+		2rem,
+		1.5rem
+	),
+	'2-5': (
+		2.5rem,
+		2rem,
+		1.75rem
 	),
 	'3': (
-		'tw'
+		3rem,
+		2.5rem,
+		2.25rem
+	),
+	'3-5': (
+		3.5rem,
+		3rem,
+		2.75rem
+	),
+	'4': (
+		4rem,
+		3.5rem,
+		3rem
+	),
+	'4-5': (
+		4.5rem,
+		4rem,
+		3.125rem
+	),
+	'5': (
+		5rem,
+		4.5rem,
+		3.5rem
+	),
+	'5-5': (
+		5.5rem,
+		5rem,
+		3.85rem
+	),
+	'6-5': (
+		6.5rem,
+		5.5rem,
+		4rem
 	)
-);
-
-// .gap{direction}{-breakpoint}-value =>
-// .gap-lg-0 => gap: 0; (after lg breakpoint)
-// directions: ('', '-h', '-v')
-$layout-gaps: (
-	'0': 0,
-	'4px': 4px,
-	'0-5': 0.5rem,
-	'0-75': 0.75rem,
-	'1': 1rem,
-	'1-5': 1.5rem,
-	'2': 2rem,
-	'3': 3rem,
-	'12': 12px
-);
-
-// .w{-breakpoint}-{value} =>
-// .w-lg-100 => width: 100%; (after lg breakpoint)
-$width-sizing-options: (
-	'100': 100%
-);
-
-// .h{-breakpoint}-{value} =>
-// .h-lg-100 => height: 100%; (after lg breakpoint)
-$height-sizing-options: (
-	'100': 100%,
-	'100vh': 100vh,
-	'250px': 250px
 );
 
 // .background-{key} => .background-white => background-color: #fff;
 // .color-{key} => .color-white => color: #fff;
 $colors: (
 	'white': #fff,
-	'blue-gradient': linear-gradient(#0179C1, #2B539F),
-	'black': #141D21,
-	'dark-grey': #485D66,
-	'grey': #8B989E,
-	'semi-grey': #f6f7f7,
-
-	'primary': #3B55A4,
-	'dark-blue': #0C1546
-);	
-
-// .opc-{value} => .opc-72 => opacity: 0.72;
-$opacities: (
-	'1': 1,
-	'0-5': 0.5,
-	'0-8': 0.8,
-	'72': 0.72
+	'black': #141d21
 );
-
-// .fs{-breakpoint}-{value} =>
-// .fs-lg-1-25 => font-size: 1.25rem; (after lg breakpoint)
-$font-sizes: (
-	'0-75': 0.75rem,
-	'0-875': 0.875rem,
-	'1': 1rem,
-	'1-125': 1.125rem,
-	'1-25': 1.25rem,
-	'1-5': 1.5rem,
-	'2': 2rem,
-	'2-5': 2.5rem,
-	'3': 3rem,
-	'3-5': 3.5rem,
-	'4-5': 4.5rem,
-	'5-5': 5.5rem,
-	'6-5': 6.5rem
-);
-$font-size-breakpoint-multipliers: (
-	'mdw': 0.95,
-	'sdw': 0.8,
-	'tw': 0.75
-);
-
-// .lh-{value} => .lh-75 => line-height: 75%;
-$line-heights: (
-	'75': 75%,
-	'88': 88%,
-	'100': 100%,
-	'124': 124%,
-	'133': 133%
-);
-
-// .ls-{value} => .ls-1 => letter-spacing: 1px;
-$letter-spacings: (
-	'initial': initial,
-	'1': 1px,
-	'2': 2px,
-	'5': 0.05em,
-	'0-02': 0.02em
-);
-
-// .fw-{value} => .fw-400 => font-weight: 400;
-$font-weights: (
-	'300': 300,
-	'400': 400,
-	'500': 500,
-	'600': 600,
-	'700': 700
-);
+// global colors
+:root {
+	--color-white: #fff;
+	--color-black: #000;
+	--color-black-text: #121213;
+	--color-light-grey: #f5f5f5;
+	--color-semi-dark: #818181;
+	--color-accent: #006075;
+	--color-dark-grey: #2b2b2b;
+}

@@ -57,10 +57,10 @@ export default defineConfig({
 		sassGlobImports(),
 		ViteRestart({
 			restart: ['./styles/**/*', './components/**/*', '../**/*.jsx']
-		}),
-		cssPurge({
-			content: ['../**/*.php', '../**/*.jsx', '../**/*.html']
 		})
+		// cssPurge({
+		// 	content: ['../**/*.php', '../**/*.jsx', '../**/*.html']
+		// })
 	],
 	css: {
 		postcss: {

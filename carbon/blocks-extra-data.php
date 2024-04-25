@@ -2,6 +2,21 @@
 
 use Carbon_Fields\Field;
 
+function get_select_field($name, $caption, $available_options, $default_value, $option_key)
+{
+    $options = array_flip(
+        array_map(
+            function ($option) use ($option_key) {
+                return $option[$option_key];
+            },
+            $available_options
+        )
+    );
+    return Field::make('select', $name, $caption)
+        ->set_options($options)
+        ->set_default_value($default_value);
+}
+
 global $available_margins;
 $available_margins = [
     'Initial' => [
@@ -9,6 +24,9 @@ $available_margins = [
     ],
     '1' => [
         'bottom' => 'mb-1',
+    ],
+    '1-5' => [
+        'bottom' => 'mb-1-5',
     ],
     '2' => [
         'bottom' => 'mb-2',
@@ -22,7 +40,7 @@ $available_margins = [
     '5' => [
         'bottom' => 'mb-5',
     ],
-    '6' => [
+    '6-5' => [
         'bottom' => 'mb-6',
     ],
 ];
@@ -34,60 +52,14 @@ function get_margin_bottom_select_field($name = 'margin_bottom', $caption = 'Mar
     return get_select_field($name, $caption, $available_margins, '', 'bottom');
 }
 
-global $available_paddings;
-$available_paddings = [
-    'Initial' => [
-        'bottom' => '',
-        'top' => '',
-    ],
-    '1' => [
-        'bottom' => 'pb-1',
-        'top' => 'pt-1',
-    ],
-    '2' => [
-        'bottom' => 'pb-2',
-        'top' => 'pt-2',
-    ],
-    '3' => [
-        'bottom' => 'pb-3',
-        'top' => 'pt-3',
-    ],
-    '4' => [
-        'bottom' => 'pb-4',
-        'top' => 'pt-4',
-    ],
-    '5' => [
-        'bottom' => 'pb-5',
-        'top' => 'pt-5',
-    ],
-];
-
-function get_padding_bottom_select_field($name = 'padding_bottom', $caption = 'Padding Bottom')
-{
-    global $available_paddings;
-    return get_select_field($name, $caption, $available_paddings, '', 'bottom');
-}
-
-function get_padding_top_select_field($name = 'padding_top', $caption = 'Padding Top')
-{
-    global $available_paddings;
-    return get_select_field($name, $caption, $available_paddings, '', 'top');
-}
-
-
-// 
-
-function get_background_select_field($name = 'background', $caption = 'Has Background')
+function get_container_select_field($name = 'container', $caption = 'Container')
 {
     return Field::make('select', $name, $caption)
-        ->set_options(
-            [
-                '' => 'None',
-                'has-semi-grey-background-bottom-connection' => 'Semi Grey Background Bottom Connection',
-                'has-semi-grey-background' => 'Semi Grey Background',
-                'has-shifted-white-background' => 'Shifted White Background',
-                'has-shifted-white-background-top-connection' => 'Shifted White Background Top Connection',
-            ]
-        )
-        ->set_default_value('');
+        ->set_options([
+            'container' => 'Container',
+            'container-fluid' => 'Container Fluid',
+            'slim-container' => 'Slim Container',
+            'extra-slim-container' => 'Extra Slim Container',
+        ])
+        ->set_default_value('container');
 }

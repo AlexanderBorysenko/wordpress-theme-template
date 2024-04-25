@@ -1,14 +1,15 @@
 ::-webkit-scrollbar {
 	width: 2px;
+	height: 2px;
 }
 ::-webkit-scrollbar-track {
-	background: #939397;
+	background: #dee1e5;
 }
 ::-webkit-scrollbar-thumb {
-	background: #ffb017;
+	background: var(--color-accent);
 }
 // for firefox
 * {
-	scrollbar-color: #ffb017 #939397;
+	scrollbar-color: var(--color-accent) #dee1e5;
 	scrollbar-width: thin;
 }

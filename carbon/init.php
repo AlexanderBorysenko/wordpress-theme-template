@@ -24,3 +24,4 @@ function crb_init_blocks()
         'carbon/blocks',
     );
 }
+add_action('carbon_fields_register_fields', 'crb_init_blocks');
