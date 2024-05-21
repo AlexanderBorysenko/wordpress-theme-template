@@ -3,51 +3,72 @@
 	max-width: unset;
 }
 
-@import './variables.scss';
-@import './library/connector.scss';
+.is-root-container {
+	/* Connect reset */
+	// @import './ext/reset.scss';
+}
+.editor-styles-wrapper {
+	/* Enable global font family */
+	// font-family: 'Anderson Grotesk', sans-serif;
 
-.is-root-container.wp-block-post-content {
-	&.dark-theme {
-		background-color: var(--color-black);
-		color: rgb(251, 249, 241);
-	}
-	&.light-theme {
-		background-color: var(--color-light-grey);
-		color: var(--color-black-text);
-	}
 	[data-type*='carbon-fields/'] {
-		max-width: 100%;
+		.cf-block__preview {
+			min-height: 1rem;
+			overflow: hidden;
+		}
+		max-width: calc(100% - 2rem);
+		[data-type*='carbon-fields/'] {
+			max-width: calc(100%);
+		}
 		overflow: hidden;
-		@import './ext/fonts.scss';
-		@import './ext/html.scss';
-		@import './ext/body.scss';
-		@import './ext/scrollbar.scss';
-		@import './ext/default-typography-styling.scss';
-		@import './ext/swiper.scss';
 
-		@import './wrappers/**/*.scss';
-		@import './decorations/**/*.scss';
+		/* Connect all theme styles */
+		// @import './variables.scss';
+		// @import './ext/fonts.scss';
+		// @import './ext/html.scss';
+		// @import './ext/body.scss';
+		// @import './ext/scrollbar.scss';
+		// @import './ext/default-typography-styling.scss';
+		// @import './ext/swiper.scss';
+
+		// @import './library/connector.scss';
+
+		// @import './wrappers/**/*.scss';
 
 		.regular-text {
 			width: 100%;
 		}
+	}
 
-		.reviews-slider {
-			&__item {
-				max-width: 400px;
-			}
-			&__swiper {
-				width: auto;
-				overflow: auto;
-				padding: 0;
-			}
+	/* Styles for blocks with inner_blocks */
+	[data-type='carbon-fields/...'] {
+		// max-width: min(
+		// 	calc(100% - $container-padding * 2),
+		// 	$container-fluid-max-width
+		// );
+		border: 1px solid var(--color-light-grey);
+		padding: 1rem;
+		border-radius: 4px;
+		margin-bottom: 1rem;
+		position: relative;
+	}
+	.cf-field__body {
+		border: 1px solid var(--color-light-grey);
+		& > * {
+			width: 100%;
+			max-width: unset;
 		}
 	}
+	.wp-block .cf-block__fields {
+		margin-bottom: 1rem;
+		border-bottom: 1px solid var(--color-light-grey);
+	}
+	@import '../components/**/*.scss';
 }
 .cf-block__fields {
 	background: #fff;
 }
-@import '../components/**/*.scss';
+
 .interface-complementary-area {
 	width: 400px !important;
 }

@@ -16,7 +16,10 @@ function dump()
         $file = $backtrace[0]['file'];
         $line = $backtrace[0]['line'];
         $context = "$file:$line";
-        $dumps[$context] = $var;
+        $dumps[] = [
+            'context' => $context,
+            'var' => $var
+        ];
     }
 }
 
@@ -56,13 +59,13 @@ add_action('wp_footer', function () {
 </style>
 <div class="wp-dump">
     <?php
-        foreach ($dumps as $context => $var) {
+        foreach ($dumps as $key => $dump) {
             ?>
     <div class="wp-dump-section">
         <h3>
-            <?php echo $context; ?>
+            <?php echo $dump['context']; ?>
         </h3>
-        <pre><?php print_r($var); ?></pre>
+        <pre><?php print_r($dump['var']); ?></pre>
     </div>
     <?php
         }
