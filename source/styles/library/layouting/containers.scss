@@ -1,0 +1,56 @@
+$container-max-width: 98rem;
+$container-large-max-width: 120rem;
+$slim-container-width: 81.5rem;
+$container-padding: 1rem;
+
+:root {
+	--container-padding: 1rem;
+	--container-width: min(
+		calc(100% - var(--container-padding) * 2),
+		#{$container-max-width}
+	);
+	--container-width-to-screen: min(
+		calc(100vw - var(--container-padding) * 2),
+		#{$container-max-width}
+	);
+	--container-large-width: min(
+		calc(100% - var(--container-padding) * 2),
+		#{$container-large-max-width}
+	);
+	--container-large-width-to-screen: min(
+		calc(100vw - var(--container-padding) * 2),
+		#{$container-large-max-width}
+	);
+	--slim-container-width: #{$slim-container-width};
+
+	--base-container-simulation-inside-large-container: calc(
+		(
+				min(100vw, var(--container-large-width-to-screen)) -
+					var(--container-width-to-screen)
+			) / 2
+	);
+}
+
+.container-large {
+	width: 100%;
+	max-width: var(--container-large-width);
+	margin-left: auto;
+	margin-right: auto;
+	&.no-side-padding {
+		max-width: $container-large-max-width;
+	}
+}
+
+.container {
+	width: 100%;
+	max-width: var(--container-width);
+	margin-left: auto;
+	margin-right: auto;
+}
+
+.slim-container {
+	width: 100%;
+	max-width: var(--slim-container-width);
+	margin-left: auto;
+	margin-right: auto;
+}

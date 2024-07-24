@@ -1,0 +1,18 @@
+@use 'sass:list';
+@use 'sass:map';
+
+:root {
+	@each $size, $values in $sizes {
+		--size-#{$size}: #{map.get($values, 'default')};
+	}
+
+	@each $key, $width in $breakpoints {
+		@media (max-width: $width) {
+			@each $size, $values in $sizes {
+				@if map.has-key($values, $key) {
+					--size-#{$size}: #{map.get($values, $key)};
+				}
+			}
+		}
+	}
+}

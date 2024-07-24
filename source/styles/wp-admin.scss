@@ -3,13 +3,21 @@
 	max-width: unset;
 }
 
+@import './variables.scss';
+@import './library/layouting/containers.scss';
+.is-root-container .editor-styles-wrapper {
+	@import './library/layouting/margins.scss';
+	@import './library/layouting/paddings.scss';
+	@import './library/styling/sizes.scss';
+	@import './library/styling/alignments.scss';
+}
+
 .is-root-container {
-	/* Connect reset */
-	// @import './ext/reset.scss';
+	@import './ext/reset.scss';
 }
 .editor-styles-wrapper {
-	/* Enable global font family */
-	// font-family: 'Anderson Grotesk', sans-serif;
+	line-height: var(--main-line-height);
+	font-family: var(--main-font-family);
 
 	[data-type*='carbon-fields/'] {
 		.cf-block__preview {
@@ -18,42 +26,23 @@
 		}
 		max-width: calc(100% - 2rem);
 		[data-type*='carbon-fields/'] {
-			max-width: calc(100%);
+			max-width: 100%;
 		}
 		overflow: hidden;
+		@import './ext/fonts.scss';
+		@import './ext/html.scss';
+		@import './ext/body.scss';
+		@import './ext/scrollbar.scss';
+		@import './ext/default-typography-styling.scss';
+		@import './ext/swiper.scss';
 
-		/* Connect all theme styles */
-		// @import './variables.scss';
-		// @import './ext/fonts.scss';
-		// @import './ext/html.scss';
-		// @import './ext/body.scss';
-		// @import './ext/scrollbar.scss';
-		// @import './ext/default-typography-styling.scss';
-		// @import './ext/swiper.scss';
-
-		// @import './library/connector.scss';
-
-		// @import './wrappers/**/*.scss';
-
-		.regular-text {
-			width: 100%;
-		}
+		@import '../components/**/!(*.wp-admin).scss';
 	}
 
-	/* Styles for blocks with inner_blocks */
-	[data-type='carbon-fields/...'] {
-		// max-width: min(
-		// 	calc(100% - $container-padding * 2),
-		// 	$container-fluid-max-width
-		// );
-		border: 1px solid var(--color-light-grey);
-		padding: 1rem;
-		border-radius: 4px;
-		margin-bottom: 1rem;
-		position: relative;
-	}
+	@import '../components/**/*.wp-admin.scss';
+
 	.cf-field__body {
-		border: 1px solid var(--color-light-grey);
+		border: 1px solid #ccc;
 		& > * {
 			width: 100%;
 			max-width: unset;
@@ -61,10 +50,10 @@
 	}
 	.wp-block .cf-block__fields {
 		margin-bottom: 1rem;
-		border-bottom: 1px solid var(--color-light-grey);
+		border-bottom: 1px solid #ccc;
 	}
-	@import '../components/**/*.scss';
 }
+
 .cf-block__fields {
 	background: #fff;
 }

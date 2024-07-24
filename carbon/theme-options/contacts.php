@@ -21,7 +21,10 @@ Container::make('theme_options', 'Contacts')
     ])
     ->add_tab('Contact Form', [
         Field::make('text', 'crb_contact_page_link', 'Contact Us Page Link')->set_default_value('/contact-us'),
-        Field::make('text', 'crb_email_to', 'Send Emails To')->set_default_value('mail@example.com'),
+        Field::make('complex', 'crb_contact_mails', 'Contact Mails')
+            ->add_fields('maik', [
+                Field::make('text', 'mail', 'Mail'),
+            ])->set_layout('tabbed-horizontal')->set_header_template('<%- mail %>'),
         Field::make('text', 'crb_thank_you_page_link', 'Thank You Page Link')->set_default_value('/thank-you'),
     ])
     ->add_tab('Social Media', [

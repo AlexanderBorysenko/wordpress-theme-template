@@ -1,0 +1,37 @@
+@import './content-block-typography-wrapper.mixin.scss';
+
+[data-type='carbon-fields/content-block'] {
+	background-color: var(--color-semi-grey);
+	border-radius: 4px;
+	overflow: hidden;
+	position: relative;
+	display: grid;
+	grid-template-columns: 1fr 1fr;
+	gap: 1rem;
+	border: none;
+	max-width: var(--container-large-width);
+	border: 1px solid var(--color-light-grey);
+	padding: 1rem;
+	border-radius: 4px;
+	.cf-block__inner-blocks {
+		order: -1;
+		padding: var(--size-4);
+	}
+	&._left-image .cf-block__inner-blocks {
+		order: 2;
+	}
+	.cf-block__preview {
+		grid-column: span 2;
+	}
+	.block-editor-block-list__layout {
+		@include content-block-typography-wrapper;
+	}
+	.cf-block__fields {
+		display: block;
+		border-bottom: 0 !important;
+		margin-bottom: 0 !important;
+	}
+	.cf-media-gallery__item.cf-media-gallery__item--image {
+		flex-basis: 33.333% !important;
+	}
+}

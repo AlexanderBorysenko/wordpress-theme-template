@@ -21,14 +21,14 @@ function add_unique_id_to_headings($content)
     $headings = $xpath->query('//h2[@id] | //h3[@id]');
     if ($headings->length) {
         global $tableOfContentsData;
-        $tableOfContentsData = array();
+        $tableOfContentsData = [];
     }
     foreach ($headings as $heading) {
         global $tableOfContentsData;
-        $tableOfContentsData[] = array(
+        $tableOfContentsData[] = [
             'title' => strip_tags($heading->textContent),
             'id' => $heading->getAttribute('id')
-        );
+        ];
     }
 
     $html = $dom->saveHTML();

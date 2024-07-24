@@ -1,0 +1,32 @@
+html {
+	scroll-behavior: smooth;
+	overflow-x: clip;
+	font-size: 16px;
+	font-family: var(--main-font-family);
+	scroll-padding: calc(50vh - 2rem - var(--header-height));
+
+	@media (min-width: 3800px) {
+		font-size: 35px;
+	}
+	@media (min-width: 3400px) {
+		font-size: 30px;
+	}
+	@media (min-width: 3200px) {
+		font-size: 28px;
+	}
+	@media (min-width: 2800px) {
+		font-size: 24px;
+	}
+	@media (min-width: 2559px) {
+		font-size: 22px;
+	}
+	@media (min-width: 2180px) {
+		font-size: 20px;
+	}
+	@media (min-width: 1900px) {
+		font-size: 18px;
+	}
+	@media (max-width: $middle-desktop-width) {
+		font-size: 14px;
+	}
+}

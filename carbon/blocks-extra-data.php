@@ -57,7 +57,7 @@ function get_container_select_field($name = 'container', $caption = 'Container')
     return Field::make('select', $name, $caption)
         ->set_options([
             'container' => 'Container',
-            'container-fluid' => 'Container Fluid',
+            'container-large' => 'Container large',
             'slim-container' => 'Slim Container',
             'extra-slim-container' => 'Extra Slim Container',
         ])

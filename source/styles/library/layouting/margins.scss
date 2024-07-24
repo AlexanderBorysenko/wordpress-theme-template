@@ -1,0 +1,8 @@
+@each $size, $values in $sizes {
+	.mb-#{$size} {
+		margin-bottom: var(--size-#{$size});
+	}
+	.mt-#{$size} {
+		margin-top: var(--size-#{$size});
+	}
+}

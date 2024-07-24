@@ -1,7 +1,6 @@
 import { defineConfig } from 'vite';
 import sassGlobImports from 'vite-plugin-sass-glob-import';
 import ViteRestart from './ViteRestart';
-import cssPurge from 'vite-plugin-purgecss';
 import postCssSortMediaQueries from 'postcss-sort-media-queries';
 import postcssCombineMediaQuery from 'postcss-combine-media-query';
 
@@ -58,9 +57,6 @@ export default defineConfig({
 		ViteRestart({
 			restart: ['./styles/**/*', './components/**/*', '../**/*.jsx']
 		})
-		// cssPurge({
-		// 	content: ['../**/*.php', '../**/*.jsx', '../**/*.html']
-		// })
 	],
 	css: {
 		postcss: {

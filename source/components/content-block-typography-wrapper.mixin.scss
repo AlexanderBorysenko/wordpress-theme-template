@@ -1,0 +1,7 @@
+@mixin content-block-typography-wrapper {
+	font-size: 1rem;
+	line-height: calc(21.28px / 16px);
+	& > *:not(:last-child) {
+		margin-bottom: var(--size-1-5);
+	}
+}

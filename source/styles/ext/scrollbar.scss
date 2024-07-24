@@ -1,0 +1,15 @@
+::-webkit-scrollbar {
+	width: 2px;
+	height: 2px;
+}
+::-webkit-scrollbar-track {
+	background: #dee1e5;
+}
+::-webkit-scrollbar-thumb {
+	background: var(--color-accent);
+}
+// for firefox
+* {
+	scrollbar-color: var(--color-accent) #dee1e5;
+	scrollbar-width: thin;
+}

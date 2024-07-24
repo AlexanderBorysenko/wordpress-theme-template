@@ -1,3 +1,4 @@
+import { initContentBlocksWpAdmin } from '../components/content-block.wp-admin';
 import '../styles/wp-admin.scss';
 
 window.addEventListener('DOMContentLoaded', () => {
@@ -11,4 +12,8 @@ window.addEventListener('DOMContentLoaded', () => {
     };
 
     setInterval(setMinHeight, 500);
+
+    setInterval(() => {
+        initContentBlocksWpAdmin();
+    }, 1000);
 });

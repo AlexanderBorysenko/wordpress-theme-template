@@ -1,0 +1,17 @@
+@each $size, $values in $sizes {
+	.pl-#{$size} {
+		padding-left: var(--size-#{$size});
+	}
+	.pr-#{$size} {
+		padding-right: var(--size-#{$size});
+	}
+}
+
+@media (max-width: $mobile-width) {
+	.pl-mw-0 {
+		padding-left: 0;
+	}
+	.pr-mw-0 {
+		padding-right: 0;
+	}
+}

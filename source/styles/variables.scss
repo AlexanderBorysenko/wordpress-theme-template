@@ -1,0 +1,91 @@
+$large-desktop-width: 1680px;
+$middle-desktop-width: 1440px;
+$tablet-width: 1080px;
+$mobile-width: 620px;
+
+$breakpoints: (
+	'ldw': $large-desktop-width,
+	'mdw': $middle-desktop-width,
+	'tw': $tablet-width,
+	'mw': $mobile-width
+);
+
+:root {
+	--main-font-family: sans-serif;
+
+	--main-line-height: 1.21;
+}
+
+$sizes: (
+	'1': (
+		'default': 1rem
+	),
+	'1-125': (
+		'default': 1.125rem,
+		'mdw': 1rem
+	),
+	'1-25': (
+		'default': 1.25rem,
+		'mdw': 1.125rem
+	),
+	'1-5': (
+		'default': 1.5rem,
+		'mdw': 1.25rem
+	),
+	'1-75': (
+		'default': 1.75rem,
+		'mdw': 1.5rem
+	),
+	'2': (
+		'default': 2rem,
+		'mdw': 1.75rem
+	),
+	'2-5': (
+		'default': 2.5rem,
+		'mdw': 2rem,
+		'tw': 1.75rem
+	),
+	'3': (
+		'default': 3rem,
+		'mdw': 2.5rem,
+		'tw': 2rem
+	),
+	'3-5': (
+		'default': 3.5rem,
+		'mdw': 3rem,
+		'tw': 2.5rem
+	),
+	'4': (
+		'default': 4rem,
+		'mdw': 3.5rem,
+		'tw': 3rem,
+		'mw': 2.75rem
+	),
+	'4-5': (
+		'default': 4.5rem,
+		'mdw': 4rem,
+		'tw': 3.5rem
+	),
+	'5': (
+		'default': 5rem,
+		'mdw': 4.5rem,
+		'tw': 4rem
+	),
+	'5-5': (
+		'default': 5.5rem,
+		'mdw': 5rem,
+		'tw': 4.5rem,
+		'mw': 4rem
+	),
+	'6-5': (
+		'default': 6.5rem,
+		'mdw': 6rem,
+		'tw': 5.5rem,
+		'mw': 5rem
+	)
+);
+
+// global colors
+:root {
+	--color-black: #0f1a27;
+}
