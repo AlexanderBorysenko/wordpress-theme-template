@@ -8,18 +8,20 @@
 global $dumps;
 $dumps = [];
 
-function log()
-{
-    foreach (func_get_args() as $var) {
-        global $dumps;
-        $backtrace = debug_backtrace();
-        $file = $backtrace[0]['file'];
-        $line = $backtrace[0]['line'];
-        $context = "$file:$line";
-        $dumps[] = [
-            'context' => $context,
-            'var' => $var
-        ];
+if (!function_exists('_dump')) {
+    function _dump()
+    {
+        foreach (func_get_args() as $var) {
+            global $dumps;
+            $backtrace = debug_backtrace();
+            $file = $backtrace[0]['file'];
+            $line = $backtrace[0]['line'];
+            $context = "$file:$line";
+            $dumps[] = [
+                'context' => $context,
+                'var' => $var
+            ];
+        }
     }
 }
 
