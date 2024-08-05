@@ -14,6 +14,8 @@ const cssUrlImagesLoader = () => {
 				const matches = code.match(regex);
 				if (matches) {
 					matches.forEach(match => {
+						if (match.includes('data:image')) return;
+
 						const url = match
 							.replace('url(', '')
 							.replace(')', '')
