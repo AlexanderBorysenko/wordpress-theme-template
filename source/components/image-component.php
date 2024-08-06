@@ -25,6 +25,6 @@ $attributes = array_map(function ($key, $value) {
 }, array_keys($attributes), $attributes);
 
 $attributes = implode(' ', $attributes);
-$attributes += " $additional_attributes";
+$attributes .= " $additional_attributes";
 ?>
 <img src="<?= $src ?>" <?= $attributes ?>>
