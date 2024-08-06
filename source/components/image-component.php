@@ -28,8 +28,3 @@ $attributes = implode(' ', $attributes);
 $attributes += " $additional_attributes";
 ?>
 <img src="<?= $src ?>" <?= $attributes ?>>
-
-<?= component('image-component', [
-    'class' => '',
-    ...get_image($id, 'full')
-]); ?>

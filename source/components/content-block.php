@@ -1,16 +1,22 @@
-<section class="content-block container-large <?= $class ?? '' ?>">
-    <?= component('content-block-typography-wrapper', [
+<section class="content-block container-fluid <?= $class ?? '' ?>">
+    <?= component('content-block-typography', [
         'class' => 'content-block__main',
         'slot' => $slot
     ]); ?>
-    <?php
-    $image = get_image($image);
-    if ($image):
-        ?>
-        <div class="content-block__media-container">
-            <img src="<?= $image['src'] ?>" loading="lazy" alt="<?= $image['alt'] ?>" width="<?= $image['width'] ?>"
-                height="<?= $image['height'] ?>" sizes="<?= $image['sizes'] ?>" srcset="<?= $image['srcset'] ?>"
-                class="content-block__image">
-        </div>
-    <?php endif; ?>
+    <div class="content-block__media">
+        <?php
+        if (count($images) <= 1):
+            $image = get_image($images[0]);
+            if ($image):
+                ?>
+                <div class="content-block__image-container">
+                    <?= component('image-component', [
+                        'image' => $image,
+                        'class' => 'content-block__image',
+                    ]); ?>
+                </div>
+            <?php endif; ?>
+        <?php else: ?>
+        <?php endif; ?>
+    </div>
 </section>
