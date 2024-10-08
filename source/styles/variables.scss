@@ -1,12 +1,9 @@
 $large-desktop-width: 1680px;
-$middle-desktop-width: 1440px;
-$tablet-width: 1080px;
-$mobile-width: 620px;
+$small-width: 1180px;
+$mobile-width: 640px;
 
 $breakpoints: (
-	'ldw': $large-desktop-width,
-	'mdw': $middle-desktop-width,
-	'tw': $tablet-width,
+	'sw': $large-desktop-width,
 	'mw': $mobile-width
 );
 
@@ -17,71 +14,85 @@ $breakpoints: (
 }
 
 $sizes: (
+	'0-75': (
+		'default': 0.75rem
+	),
 	'1': (
 		'default': 1rem
 	),
+	'17px': (
+		'default': 1.0625rem,
+		'sw': 1rem
+	),
 	'1-125': (
 		'default': 1.125rem,
-		'mdw': 1rem
+		'sw': 1rem,
+		'mw': 1rem
 	),
 	'1-25': (
 		'default': 1.25rem,
-		'mdw': 1.125rem
+		'sw': 1.125rem,
+		'mw': 1rem
 	),
 	'1-5': (
 		'default': 1.5rem,
-		'mdw': 1.25rem
+		'sw': 1.25rem,
+		'mw': 1rem
 	),
 	'1-75': (
 		'default': 1.75rem,
-		'mdw': 1.5rem
+		'sw': 1.5rem,
+		'mw': 1.25rem
 	),
 	'2': (
 		'default': 2rem,
-		'mdw': 1.75rem
+		'sw': 1.75rem,
+		'mw': 1.25rem
 	),
 	'2-5': (
 		'default': 2.5rem,
-		'mdw': 2rem,
-		'tw': 1.75rem
+		'sw': 1.75rem,
+		'mw': 1.25rem
 	),
 	'3': (
 		'default': 3rem,
-		'mdw': 2.5rem,
-		'tw': 2rem
+		'sw': 2rem,
+		'mw': 1.5rem
 	),
 	'3-5': (
 		'default': 3.5rem,
-		'mdw': 3rem,
-		'tw': 2.5rem
+		'sw': 2.5rem,
+		'mw': 2rem
 	),
 	'4': (
 		'default': 4rem,
-		'mdw': 3.5rem,
-		'tw': 3rem,
-		'mw': 2.75rem
+		'sw': 3rem,
+		'mw': 2rem
 	),
 	'4-5': (
 		'default': 4.5rem,
-		'mdw': 4rem,
-		'tw': 3.5rem
+		'sw': 3.5rem,
+		'mw': 2rem
 	),
 	'5': (
 		'default': 5rem,
-		'mdw': 4.5rem,
-		'tw': 4rem
+		'sw': 4rem,
+		'mw': 2.25rem
 	),
 	'5-5': (
 		'default': 5.5rem,
-		'mdw': 5rem,
-		'tw': 4.5rem,
-		'mw': 4rem
+		'sw': 4.5rem,
+		'mw': 2.25rem
 	),
 	'6-5': (
 		'default': 6.5rem,
-		'mdw': 6rem,
-		'tw': 5.5rem,
-		'mw': 5rem
+		'sw': 5.5rem,
+		'mw': 2.5rem
+	),
+	'11-5': (
+		'default': 11.5rem,
+		'sw': 7rem,
+		'mw': 4rem
 	)
 );
 

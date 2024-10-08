@@ -4,16 +4,16 @@
  *
  * @param int $id The attachment ID
  * @param string $size The image size (default: 'full')
- * @return array|false An array containing the image data or false if the ID is empty
+ * @return array An array containing the image data or false if the ID is empty
  */
 function get_image($id, $size = 'full')
 {
     if (!$id)
-        return false;
+        return [];
 
     $image = wp_get_attachment_image_src($id, $size);
     if (!$image)
-        return false;
+        return [];
     $image_data = [
         'src' => $image[0],
         'width' => $image[1],

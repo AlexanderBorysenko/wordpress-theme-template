@@ -4,13 +4,13 @@
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 1rem;
-	@media (max-width: $tablet-width) {
+	@media (max-width: $small-width) {
 		grid-template-columns: 1fr;
 		padding-bottom: 1rem;
 		padding: 1rem;
 	}
 	&__main {
-		@media (max-width: $tablet-width) {
+		@media (max-width: $small-width) {
 			padding: var(--size-2) 0 var(--container-padding) 0;
 		}
 	}
@@ -20,7 +20,7 @@
 	&__image-container {
 		position: absolute;
 		inset: 0 0 0 calc(50% + 1rem / 2);
-		@media (max-width: $tablet-width) {
+		@media (max-width: $small-width) {
 			position: relative;
 			max-height: 40vh;
 			inset: 0;
