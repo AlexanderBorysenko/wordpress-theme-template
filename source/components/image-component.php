@@ -1,26 +1,15 @@
 <?php
-$additional_attributes = $attributes ?? '';
-$attributes = [];
-if (isset($src) && !empty($src)) {
-    if (isset($srcset) && !empty($srcset)) {
-        $attributes['srcset'] = $srcset;
-        $attributes['sizes'] = $sizes;
-    }
+/**
+ * Image Component
+ * @param string|int|object $reference
+ * @param string $size (optional)
+ */
 
-    $attributes['width'] = $width ?? '100';
-
-    $attributes['height'] = $height ?? '100';
-
-    $attributes['alt'] = $alt ?? 'image';
-
-    $attributes['loading'] = $loading ?? 'lazy';
-
-    $attributes['class'] = $class ?? '';
-
-    $attributes = array_to_html_attributes($attributes);
-
-    $attributes .= " $additional_attributes";
+if (!empty($reference)) {
+    $image = get_image($reference, !empty($size) ? $size : 'full');
+    if (!$image)
+        return;
     ?>
-    <img src="<?= $src ?>" <?= $attributes ?>>
+    <img <?= assemble_html_attributes($image, $props) ?>>
     <?php
 }

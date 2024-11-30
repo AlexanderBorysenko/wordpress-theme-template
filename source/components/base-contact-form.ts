@@ -55,6 +55,12 @@ export const initContactForm = () => {
                 })
                 .then((response) => {
                     if (response.success) {
+                        try {
+                            //@ts-ignore
+                            dataLayer.push({ 'event': 'form_submit' });
+                        } catch (e) {
+                            console.error(e);
+                        }
                         window.location = response.data.redirect;
                     } else {
                         handleErrors(response.data.errors)
