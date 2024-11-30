@@ -7,20 +7,20 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package wp_theme
+ * @package c_valley
  */
 
 ?>
 <!doctype html>
 <html <?php language_attributes(); ?>>
 
-    <head>
-        <meta charset="<?php bloginfo('charset'); ?>">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+<head>
+    <meta charset="<?php bloginfo('charset'); ?>">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
-        <?php wp_head(); ?>
-    </head>
+    <?php wp_head(); ?>
+</head>
 
-    <?php
+<?php
 
-	component('header-component');
+component('header-component');

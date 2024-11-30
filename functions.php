@@ -1,11 +1,11 @@
 <?php
 
 /**
- * wp_theme functions and definitions
+ * c_valley functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package wp_theme
+ * @package c_valley
  */
 
 require_once(get_template_directory() . '/helpers/require-all.php');
