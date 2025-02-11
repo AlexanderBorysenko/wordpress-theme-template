@@ -4,7 +4,9 @@
     },
     "autoload": {
         "psr-4": {
-            "DevTools\\": "DevTools/"
+            "DevTools\\": "ThemeEngine/DevTools/",
+            "Helpers\\": "ThemeEngine/Helpers/",
+            "Theming\\": "ThemeEngine/Theming/"
         }
     }
 }

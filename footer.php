@@ -10,7 +10,6 @@
  * @package c_valley
  */
 ?>
-</main>
 
 <?= component('footer-component') ?>
 

@@ -1,4 +1,8 @@
 <?php
+/**
+ * Scrolls the page to the given position if the session storage contains the `shouldScroll` variable
+ */
+
 add_action('wp_head', function () {
     ?>
     <script>

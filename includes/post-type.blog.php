@@ -1,40 +1,39 @@
 <?php
-// create blog post type with blog_category taxonomy
 function create_blog_post_type()
 {
     register_post_type(
         'blog',
-        array(
-            'labels' => array(
-                'name' => __('Blog'),
-                'singular_name' => __('Blog'),
-                'add_new' => __('Add New'),
-                'add_new_item' => __('Add New Blog'),
-                'edit' => __('Edit'),
-                'edit_item' => __('Edit Blog'),
-                'new_item' => __('New Blog'),
-                'view' => __('View Blog'),
-                'view_item' => __('View Blog'),
-                'search_items' => __('Search Blog'),
-                'not_found' => __('No Blog found'),
-                'not_found_in_trash' => __('No Blog found in Trash'),
-                'parent' => __('Parent Blog')
-            ),
+        [
+            'labels' => [
+                'name' => 'Blog',
+                'singular_name' => 'Blog',
+                'add_new' => 'Add New',
+                'add_new_item' => 'Add New Blog',
+                'edit' => 'Edit',
+                'edit_item' => 'Edit Blog',
+                'new_item' => 'New Blog',
+                'view' => 'View Blog',
+                'view_item' => 'View Blog',
+                'search_items' => 'Search Blog',
+                'not_found' => 'No Blog found',
+                'not_found_in_trash' => 'No Blog found in Trash',
+                'parent' => 'Parent Blog'
+            ],
             'public' => true,
-            'supports' => array(
+            'supports' => [
                 'title',
                 'editor',
                 'excerpt',
                 'author',
                 'thumbnail',
-            ),
-            'taxonomies' => array(''),
+            ],
+            'taxonomies' => [''],
             'menu_icon' => 'dashicons-format-aside',
             'has_archive' => true,
-            'rewrite' => array('slug' => 'blog'),
+            'rewrite' => ['slug' => 'blog'],
             'show_in_rest' => true,
             'hierarchical' => false,
-        )
+        ]
     );
 }
 add_action('init', 'create_blog_post_type');

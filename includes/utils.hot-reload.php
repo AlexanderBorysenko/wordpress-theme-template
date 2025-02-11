@@ -1,14 +1,25 @@
 <?php
+/**
+ * Hot reloads the page when the target files are changed
+ */
+
 function get_version()
 {
-    $scriptFileName = resolve_source_build_filename('app-*.js');
-    $styleFileName = resolve_source_build_filename('app-*.css');
-    if (!$scriptFileName || !$styleFileName) {
-        return false;
+    $hotReloadTriggers = get_config('hotReloadTriggers', []);
+    $versions = [];
+
+    foreach ($hotReloadTriggers as $targetFile) {
+        try {
+            $version = filemtime(get_source_build_file_uri($targetFile));
+            if ($version)
+                $versions[] = $version;
+        } catch (Exception $e) {
+            continue;
+        }
     }
 
-    $version = filemtime(get_template_directory() . '/source/build/' . resolve_source_build_filename('app-*.js'));
-    return $version;
+    // Return the latest version(timestamp) of the target files
+    return max($versions);
 }
 function ajax_get_version()
 {
@@ -19,7 +30,7 @@ function ajax_get_version()
 add_action('wp_ajax_get_current_version', 'ajax_get_version');
 add_action('wp_ajax_nopriv_get_current_version', 'ajax_get_version');
 
-function handleHotReload()
+function handle_hot_reload()
 {
     ?>
     <script>
@@ -43,6 +54,9 @@ function handleHotReload()
     <?php
 }
 
-if (current_user_can('administrator')) {
-    add_action('wp_head', 'handleHotReload', 1);
+if (
+    current_user_can('administrator') &&
+    count(get_config('hotReloadTriggers', [])) > 0
+) {
+    add_action('wp_head', 'handle_hot_reload', 1);
 }
