@@ -1,0 +1,21 @@
+export default class {{camelComponentName}} {
+    private element: HTMLElement;
+
+    constructor(element: HTMLElement) {
+        this.element = element;
+
+        this.init();
+    }
+
+    private init() {
+    }
+
+    private onEvent(event: MouseEvent) {
+    }
+
+    public static initAll() {
+        document.querySelectorAll<HTMLElement>('.{{componentName}}').forEach(element => {
+            new {{camelComponentName}}(element);
+        });
+    }
+}

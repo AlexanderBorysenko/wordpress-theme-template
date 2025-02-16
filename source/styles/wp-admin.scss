@@ -25,6 +25,10 @@
 			min-height: 1rem;
 			overflow: hidden;
 		}
+		.wp-block {
+			margin-left: 0 !important;
+			margin-right: 0 !important;
+		}
 		max-width: calc(100% - 2rem);
 		[data-type*='carbon-fields/'] {
 			max-width: 100%;

@@ -1,4 +1,5 @@
 <?php
+global $loaded_components;
 function component($component, $props = [])
 {
     if (!is_array($props)) {
@@ -6,6 +7,10 @@ function component($component, $props = [])
     }
     extract($props);
 
+
+    if (!isset($loaded_components[$component])) {
+        array_push($loaded_components, $component);
+    }
 
     include get_template_directory() . "/source/components/$component.php";
 }

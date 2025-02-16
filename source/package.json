@@ -6,12 +6,14 @@
   "scripts": {
     "dev": "vite build --watch",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "create-component": "node ./dev/create-component.js"
   },
   "devDependencies": {
     "@types/micromatch": "^4.0.2",
     "@types/node": "^18.16.0",
     "browser-sync": "^3.0.2",
+    "inquirer": "^12.4.1",
     "js-md5": "^0.7.3",
     "micromatch": "^4.0.5",
     "path": "^0.12.7",
@@ -28,7 +30,6 @@
     "@alpinejs/mask": "^3.13.1",
     "@types/grecaptcha": "^3.0.9",
     "array-move": "^4.0.0",
-    "inquirer": "^9.2.22",
     "swiper": "^10.2.0"
   }
 }

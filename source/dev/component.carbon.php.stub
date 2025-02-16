@@ -1,0 +1,22 @@
+<?php
+use Carbon_Fields\Block;
+use Carbon_Fields\Field;
+
+Block::make('{{componentName}}', '{{componentName}}')
+    ->add_tab('Content', [
+
+    ])
+    ->add_tab('Layouting', [
+        // get_margin_bottom_select_field(),
+    ])
+    ->set_mode('preview')
+    ->set_icon('admin-site')
+    ->set_category('theme-blocks')
+    ->set_render_callback(function ($fields, $attributes, $inner_blocks) {
+        $fields['class'] = [
+            $fields['margin_bottom'] ?? null,
+            $attributes['className'] ?? null
+        ];
+
+        component('{{componentName}}', $fields);
+    });

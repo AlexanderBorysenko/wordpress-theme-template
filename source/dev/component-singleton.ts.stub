@@ -1,0 +1,26 @@
+export default class {{camelComponentName}} {
+    private static instance: {{camelComponentName}} | null = null;
+    private element: HTMLElement;
+
+    private constructor(element: HTMLElement) {
+        this.element = element;
+        this.init();
+    }
+
+    private init(): void {
+        // Initialization code here
+    }
+
+    public static getInstance(element?: HTMLElement): {{camelComponentName}} {
+        if (!this.instance) {
+            if (!element) {
+                element = document.querySelector<HTMLElement>('#{{componentName}}') as HTMLElement;
+                if (!element) {
+                    throw new Error('Element with id #{{componentName}} not found.');
+                }
+            }
+            this.instance = new {{camelComponentName}}(element);
+        }
+        return this.instance;
+    }
+}
