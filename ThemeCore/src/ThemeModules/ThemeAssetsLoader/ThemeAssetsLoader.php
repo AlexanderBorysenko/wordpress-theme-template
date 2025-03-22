@@ -12,6 +12,8 @@ use ThemeCore\ThemeModules\ThemeModule;
  * - adminJs: array of JavaScript files to load in admin area
  * - css: array of CSS files to load on the frontend
  * - adminCss: array of CSS files to load in admin area
+ * - inlineHeadJs: array of JavaScript files to include inline in the head (default: [])
+ * - inlineFooterJs: array of JavaScript files to include inline in the footer (default: [])
  *
  * @param array $config Configuration array with assets
  */
@@ -37,6 +39,12 @@ class ThemeAssetsLoader extends ThemeModule
         }
         if (!array_key_exists('lazyJs', $this->config)) {
             $this->config['lazyJs'] = [];
+        }
+        if (!array_key_exists('inlineHeadJs', $this->config)) {
+            $this->config['inlineHeadJs'] = [];
+        }
+        if (!array_key_exists('inlineFooterJs', $this->config)) {
+            $this->config['inlineFooterJs'] = [];
         }
         if (!array_key_exists('adminJs', $this->config)) {
             throw new \Exception('Invalid config provided for ThemeAssetsLoader. Missing "adminJs" key');
@@ -78,6 +86,8 @@ class ThemeAssetsLoader extends ThemeModule
                 endforeach;
                 wp_dequeue_script($deque_scripts);
             }
+
+            remove_action('wp_print_styles', 'print_emoji_styles');
         }
     }
 
@@ -106,7 +116,7 @@ class ThemeAssetsLoader extends ThemeModule
     {
         // Target only our theme's CSS handles.
         if (strpos($handle, $prefix) === 0) {
-            $html = "<link rel='preload' href='$href'/>";
+            $html = "<link rel='preload' href='$href' as='style' onload=\"this.onload=null;this.rel='stylesheet'\" media='$media' />";
             $html .= "<link rel='stylesheet' href='$href'>";
         }
         return $html;
@@ -130,9 +140,47 @@ class ThemeAssetsLoader extends ThemeModule
     }
 
     /**
+     * Insert inline JavaScript in the head.
+     */
+    public function insertInlineHeadJs()
+    {
+        $inlineHeadJsFiles = $this->config['inlineHeadJs'];
+
+        if (!empty($inlineHeadJsFiles)) {
+            foreach ($inlineHeadJsFiles as $jsFile) {
+                $jsFilePath = getThemeFilePath($jsFile);
+                if (file_exists($jsFilePath)) {
+                    echo '<script type="module">';
+                    echo file_get_contents($jsFilePath);
+                    echo '</script>';
+                }
+            }
+        }
+    }
+
+    /**
+     * Insert inline JavaScript in the footer.
+     */
+    public function insertInlineFooterJs()
+    {
+        $inlineFooterJsFiles = $this->config['inlineFooterJs'];
+
+        if (!empty($inlineFooterJsFiles)) {
+            foreach ($inlineFooterJsFiles as $jsFile) {
+                $jsFilePath = get_template_directory() . '/' . $jsFile;
+                if (file_exists($jsFilePath)) {
+                    echo '<script type="module">';
+                    echo file_get_contents($jsFilePath);
+                    echo '</script>';
+                }
+            }
+        }
+    }
+
+    /**
      * Enqueue lazy load scripts.
      */
-    public function enqueueLazyLoadAssets()
+    public function enqueueLazyJs()
     {
         ?>
         <script>
@@ -206,10 +254,24 @@ class ThemeAssetsLoader extends ThemeModule
         });
 
         /**
+         * Insert inline JavaScript in the head
+         */
+        add_action('wp_head', function () {
+            $this->insertInlineHeadJs();
+        });
+
+        /**
+         * Insert inline JavaScript in the footer
+         */
+        add_action('wp_footer', function () {
+            $this->insertInlineFooterJs();
+        }, 5);
+
+        /**
          * Add script to lazy load some js files
          */
         add_action('wp_footer', function () {
-            $this->enqueueLazyLoadAssets();
+            $this->enqueueLazyJs();
         });
     }
 
