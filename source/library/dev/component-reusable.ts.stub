@@ -1,13 +1,9 @@
-import Component from '~/scripts/Components/Component';
+import Component from "~/library/scripts/Components/Component";
 
 export default class {{camelComponentName}} extends Component{
-    componentName = '{{componentName}}';
-
     protected constructDependencies(): void {
-        // Инициализация зависимостей (внутренних компонентов и тп)
     }
 
     public init() {
-        // Запуск компонента
     }
 }

@@ -7,7 +7,7 @@ Block::make('{{componentName}}', '{{componentPrettyName}}')
 
     ])
     ->add_tab('Layouting', [
-        // get_margin_bottom_select_field(),
+        getMarginBottomSelectField(),
     ])
     ->set_mode('preview')
     ->set_icon('admin-site')

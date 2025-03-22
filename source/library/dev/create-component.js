@@ -108,7 +108,7 @@ const templateGenerators = {
 		const kebabName = toKebabCase(componentName);
 		const componentDir = path.join(
 			__dirname,
-			'../components'
+			'../../components'
 			// , kebabName
 		);
 
