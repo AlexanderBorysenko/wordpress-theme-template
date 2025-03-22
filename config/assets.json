@@ -3,6 +3,8 @@
         "source/build/admin-*.js"
     ],
     "lazyJs": [],
+    "inlineHeadJs": [],
+    "inlineFooterJs": [],
     "css": [
         "source/build/asset.app-*.css"
     ],
