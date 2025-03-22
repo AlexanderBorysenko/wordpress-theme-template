@@ -1,0 +1,26 @@
+@include add-utility-classes(
+	'fs',
+	'font-size',
+	(
+		'default': (
+			'0-75': 0.75rem,
+			'1': var(--size-1),
+			'17px': var(--size-17px),
+			'1-125': var(--size-1-125),
+			'1-25': var(--size-1-25),
+			'1-5': var(--size-1-5),
+			'1-75': var(--size-1-75),
+			'2': var(--size-2),
+			'2-5': var(--size-2-5),
+			'3': var(--size-3),
+			'3-5': var(--size-3-5),
+			'4': var(--size-4),
+			'4-5': var(--size-4-5),
+			'5': var(--size-5),
+			'5-5': var(--size-5-5),
+			'6': var(--size-6),
+			'6-5': var(--size-6-5),
+			'11-5': var(--size-11-5)
+		)
+	)
+);

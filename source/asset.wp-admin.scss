@@ -1,0 +1,90 @@
+@use 'styles/library-provider' as *;
+
+.wp-block {
+	// prevents overflow-x on the editor issue
+	max-width: 99%;
+}
+
+@import 'styles/vars';
+@import 'styles/library/containers';
+@import 'styles/library/size-variables';
+
+.is-root-container,
+.block-editor-block-preview__container {
+	@include add-reset-styles;
+
+	* {
+		line-height: var(--main-line-height);
+	}
+
+	font-family: var(--main-font-family);
+
+	@import 'styles/library/swiper';
+	@import 'styles/global/default-typography-styling';
+	@import 'styles/library/alignment';
+	@import 'styles/library/width-limiters';
+	@import 'styles/library/font-sizes';
+	@import 'styles/library/font-weights';
+	@import 'styles/library/line-heights';
+	@import 'styles/library/grid';
+	@import 'styles/library/margins';
+	@import 'styles/library/paddings';
+
+	@include add-carbon-editor-styles();
+
+	// @import 'components/**/*.wp-admin.scss';
+	[data-type*='carbon-fields/'] {
+		.cf-block__preview {
+			min-height: 1rem;
+			overflow: hidden;
+			a {
+				pointer-events: none !important;
+			}
+		}
+		.wp-block {
+			margin-left: 0 !important;
+			margin-right: 0 !important;
+		}
+		max-width: calc(100% - 2rem);
+		[data-type*='carbon-fields/'] {
+			max-width: 100%;
+		}
+		overflow: hidden;
+
+		@import 'components/**/!(*.wp-admin).scss';
+	}
+}
+
+.cf-block__fields {
+	background: #fff;
+}
+
+.interface-complementary-area__fill {
+	width: 400px !important;
+	.interface-complementary-area {
+		width: 100% !important;
+	}
+}
+.edit-post-visual-editor .editor-styles-wrapper {
+	padding-left: 0 !important;
+	padding-right: 0 !important;
+}
+.edit-post-visual-editor__post-title-wrapper {
+	padding-left: 1rem;
+	padding-right: 1rem;
+}
+
+@import 'components/content-block-typography-wrapper.mixin.scss';
+.post-type-blog .is-root-container,
+.post-type-career .is-root-container,
+[data-type='carbon-fields/page-content-wrapper']
+	> .cf-block__inner-blocks
+	> .block-editor-inner-blocks
+	> .block-editor-block-list__layout {
+	@include content-block-typography-wrapper;
+
+	width: 100%;
+	max-width: 68.75rem;
+	margin-left: auto;
+	margin-right: auto;
+}

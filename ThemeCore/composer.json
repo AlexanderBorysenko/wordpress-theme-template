@@ -1,0 +1,13 @@
+{
+    "require": {
+        "htmlburger/carbon-fields": "^3"
+    },
+    "autoload": {
+        "psr-4": {
+            "ThemeCore\\": "src/"
+        },
+        "files": [
+            "src/load-functions.php"
+        ]
+    }
+}

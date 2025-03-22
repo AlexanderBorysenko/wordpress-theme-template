@@ -1,0 +1,24 @@
+@use 'sass:map';
+$breakpoints: () !default;
+
+@mixin smaller-than($bpKey) {
+	$bp: map.get($breakpoints, $bpKey);
+	@if $bp {
+		@media (max-width: $bp) {
+			@content;
+		}
+	} @else {
+		@warn "Breakpoint `#{$bpKey}` не найден в $breakpoints.";
+	}
+}
+
+@mixin larger-than($bpKey) {
+	$bp: map.get($breakpoints, $bpKey);
+	@if $bp {
+		@media (min-width: $bp) {
+			@content;
+		}
+	} @else {
+		@warn "Breakpoint `#{$bpKey}` не найден в $breakpoints.";
+	}
+}

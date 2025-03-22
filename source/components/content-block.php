@@ -1,21 +1,24 @@
-<section class="content-block container-fluid <?= $class ?? '' ?>">
-    <?= component('content-block-typography', [
-        'class' => 'content-block__main',
-        'slot' => $slot
-    ]); ?>
-    <div class="content-block__media">
-        <?php
-        if (count($images) <= 1):
-            if ($image):
-                ?>
-                <div class="content-block__image-container">
-                    <?= component('image-component', [
-                        'reference' => $image,
-                        'class' => 'content-block__image',
-                    ]); ?>
-                </div>
-            <?php endif; ?>
-        <?php else: ?>
-        <?php endif; ?>
+<?php
+/**
+ * Content Block
+ */
+?>
+
+<section <?= $htmlAttributesString(['class' => 'content-block container-large']) ?>>
+    <?= component(
+        'content-block-typography-wrapper',
+        ['class' => 'content-block__main'],
+        [
+            'slot' => $slot,
+        ]
+    ); ?>
+    <div class="content-block__image-container">
+        <?= component(
+            'image-component',
+            ['class' => 'content-block__image'],
+            [
+                'reference' => $image ?? null,
+            ]
+        ); ?>
     </div>
 </section>

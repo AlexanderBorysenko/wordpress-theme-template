@@ -7,13 +7,12 @@
     "dev": "vite build --watch",
     "build": "vite build",
     "preview": "vite preview",
-    "create-component": "node ./dev/create-component.js"
+    "create-component": "node ./library/dev/create-component.js"
   },
   "devDependencies": {
     "@types/micromatch": "^4.0.2",
-    "@types/node": "^18.16.0",
+    "@types/node": "^18.19.80",
     "browser-sync": "^3.0.2",
-    "inquirer": "^12.4.1",
     "js-md5": "^0.7.3",
     "micromatch": "^4.0.5",
     "path": "^0.12.7",
@@ -28,8 +27,14 @@
   },
   "dependencies": {
     "@alpinejs/mask": "^3.13.1",
-    "@types/grecaptcha": "^3.0.9",
     "array-move": "^4.0.0",
-    "swiper": "^10.2.0"
+    "corner-smoothing": "^0.1.5",
+    "fast-glob": "^3.3.3",
+    "glob": "^11.0.1",
+    "inquirer": "^9.2.22",
+    "resize-observer-polyfill": "^1.5.1",
+    "simplebar": "^6.2.7",
+    "swiper": "^10.2.0",
+    "terser": "^5.39.0"
   }
 }

@@ -1,0 +1,30 @@
+code {
+	background: #6e6e6e;
+	color: #fff;
+	padding: 0.1rem 0.4rem;
+	border-radius: 0.25rem;
+}
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+
+h1,
+h2,
+h3,
+h4 {
+	line-height: 104%;
+	font-weight: 700;
+}
+
+a,
+button {
+	font-family: 'Manrope';
+}
+* {
+	letter-spacing: -0.02em;
+}
+img {
+	user-select: none;
+}

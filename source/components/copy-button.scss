@@ -1,0 +1,83 @@
+.copy-button {
+	font-family: Lora;
+	font-weight: 500;
+	font-size: 1.125rem;
+	line-height: 1;
+	letter-spacing: 0%;
+
+	color: var(--semi-dark);
+	cursor: pointer;
+
+	display: flex;
+	align-items: center;
+	gap: 1rem;
+
+	transition: color 0.3s ease;
+	position: relative;
+
+	svg {
+		--clip-color: var(--black);
+	}
+
+	@include smaller-than('mobile') {
+		padding-left: 0;
+	}
+
+	&:hover {
+		text-decoration: underline;
+		svg {
+			--clip-color: var(--black);
+		}
+	}
+
+	/* Notification container */
+	&::after {
+		content: 'Link copied!';
+		position: absolute;
+		top: -20%;
+		left: -8rem;
+		width: auto;
+		height: auto;
+		padding: 0.5rem 1rem;
+		border-radius: 0.25rem;
+		background-color: var(--black);
+
+		font-family: Manrope;
+		font-weight: 400;
+		font-size: 1.125rem;
+		line-height: 1;
+		letter-spacing: 0%;
+		color: var(--total-white);
+
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		font-size: 0.875rem;
+		z-index: 10;
+
+		opacity: 0;
+		pointer-events: none;
+		transform: translateY(0.625rem);
+		transition: opacity 0.3s ease, transform 0.3s ease;
+		@include smaller-than('tablet') {
+			padding-left: 0;
+		}
+	}
+
+	&._copied::after {
+		opacity: 1;
+		transform: translateY(0);
+	}
+}
+
+@keyframes copyButton {
+	0% {
+		opacity: 0;
+	}
+	50% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}

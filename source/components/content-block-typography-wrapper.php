@@ -1,3 +1,3 @@
-<div class="content-block-typography-wrapper <?= $class ?? '' ?>">
+<div <?= $htmlAttributesString(['class' => 'content-block-typography-wrapper']) ?>>
     <?= $slot ?>
 </div>

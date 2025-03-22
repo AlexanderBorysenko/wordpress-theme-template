@@ -7,10 +7,13 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package c_valley
+ * @package hacon
  */
 ?>
+<?= component('mobile-contact-bar'); ?>
+</main>
 
+<?= component('contact-modal'); ?>
 <?= component('footer-component') ?>
 
 <?php wp_footer(); ?>

@@ -1,0 +1,33 @@
+@use 'sass:map';
+
+$breakpoints: (
+	'medium-desktop': 1680px,
+	'tablet': 1180px,
+	'mobile': 640px
+) !default;
+
+$breakpoints-with-initial-item: map.merge(
+	(
+		'': auto
+	),
+	$breakpoints
+);
+@import './mixins/media-query-mixins';
+
+@import './mixins/add-reset-styles';
+
+@import './mixins/add-container-class';
+@import './mixins/add-grid-classes';
+@import './mixins/add-layout-alignment-classes';
+
+@import './mixins/add-utility-classes';
+
+@import './mixins/add-size-variables';
+
+@import './mixins/add-text-align-classes';
+
+@import './mixins/add-width-limiter-class';
+
+@import './mixins/add-swiper-styles.scss';
+
+@import './mixins/add-carbon-editor-styles';

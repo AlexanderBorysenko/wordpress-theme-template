@@ -1,0 +1,27 @@
+@use 'sass:map';
+@use 'sass:list';
+
+@mixin add-size-variables($sizes: ()) {
+	:root {
+		// Generate CSS variables for each size (default value)
+		@each $size, $values in $sizes {
+			--size-#{$size}: #{list.nth($values, 1)};
+		}
+
+		// Generate overrides for each breakpoint
+		$breakpoint-index: 1;
+		@each $bp, $width in $breakpoints {
+			@media (max-width: $width) {
+				@each $size, $values in $sizes {
+					@if list.length($values) > $breakpoint-index {
+						--size-#{$size}: #{list.nth(
+								$values,
+								$breakpoint-index + 1
+							)};
+					}
+				}
+			}
+			$breakpoint-index: $breakpoint-index + 1;
+		}
+	}
+}

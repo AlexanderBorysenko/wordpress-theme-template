@@ -1,9 +1,0 @@
-<?php
-/**
- * {{componentName}}
- */
-?>
-
-<div <?= assemble_html_attributes($props, ['class' => '{{componentName}}']) ?>>
-
-</div>

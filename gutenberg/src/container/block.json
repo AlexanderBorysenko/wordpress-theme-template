@@ -1,0 +1,23 @@
+{
+	"$schema": "https://schemas.wp.org/trunk/block.json",
+	"apiVersion": 3,
+	"name": "blocks/container",
+	"version": "0.1.0",
+	"title": "Container",
+	"category": "theme-layout",
+	"keywords": [
+		"container",
+		"width",
+		"wrapper"
+	],
+	"description": "Used to wrap content in a container with a max-width.",
+	"icon": "align-full-width",
+	"supports": {
+		"html": false
+	},
+	"attributes": {},
+	"example": {},
+	"textdomain": "blocks",
+	"editorScript": "file:./index.js",
+	"editorStyle": "file:./index.css"
+}

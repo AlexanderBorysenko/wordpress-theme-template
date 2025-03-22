@@ -1,8 +1,0 @@
-html {
-	scroll-behavior: smooth;
-	overflow-x: clip;
-	font-family: var(--main-font-family);
-	scroll-padding: calc(50vh - 2rem - var(--header-height));
-
-	@include global-font-size;
-}

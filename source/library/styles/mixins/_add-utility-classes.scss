@@ -1,0 +1,33 @@
+@mixin add-utility-classes(
+	// class shorthand, e.g. 'mb' for margin-bottom
+	$property-shorthand,
+	// CSS property, e.g. 'margin-bottom'
+	$property,
+	$sizes: (
+		'default': (
+			1: var(--size-1),
+			2: var(--size-2)
+		),
+		'mobile': (
+			1: 1rem
+		)
+	)
+) {
+	@each $bp, $bp-sizes in $sizes {
+		@if $bp == 'default' {
+			@each $key, $size in $bp-sizes {
+				.#{$property-shorthand}-#{$key} {
+					#{$property}: #{$size};
+				}
+			}
+		} @else {
+			@include smaller-than($bp) {
+				@each $key, $size in $bp-sizes {
+					.#{$property-shorthand}-#{$bp}-#{$key} {
+						#{$property}: #{$size};
+					}
+				}
+			}
+		}
+	}
+}

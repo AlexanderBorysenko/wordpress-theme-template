@@ -1,0 +1,67 @@
+@use 'sass:list';
+@use 'sass:map';
+
+@mixin add-grid-classes($columns, $rows, $gap: var(--grid-gap, 1rem)) {
+	// Get the maximum column value for the grid template
+	$max-column: list.nth(map.get($columns, 'default'), -1);
+
+	.grid,
+	// start wp-admin style
+	.grid>.block-editor-inner-blocks>.block-editor-block-list__layout
+	// end wp-admin style
+	{
+		display: grid;
+		grid-template-columns: repeat($max-column, 1fr);
+		gap: var(--grid-gap, #{$gap});
+		grid-column-gap: var(--grid-column-gap, #{$gap});
+		grid-row-gap: var(--grid-row-gap, #{$gap});
+		grid-auto-flow: dense;
+		& > .block-editor-block-list__block {
+			margin-left: 0;
+			margin-right: 0;
+		}
+		@media (max-width: calc(var(--grid-gap) * 1)) {
+			column-gap: 0;
+		}
+	}
+
+	// Default column classes
+	@each $column in map.get($columns, 'default') {
+		.grid-col-#{$column} {
+			grid-column: span $column;
+		}
+	}
+
+	// Responsive column classes
+	@each $bp, $cols in $columns {
+		@if $bp != 'default' {
+			@include smaller-than($bp) {
+				@each $column in $cols {
+					.grid-col-#{$bp}-#{$column} {
+						grid-column: span $column;
+					}
+				}
+			}
+		}
+	}
+
+	// Default row classes
+	@each $row in map.get($rows, 'default') {
+		.grid-row-#{$row} {
+			grid-row: span $row;
+		}
+	}
+
+	// Responsive row classes
+	@each $bp, $rs in $rows {
+		@if $bp != 'default' {
+			@include smaller-than($bp) {
+				@each $row in $rs {
+					.grid-row-#{$bp}-#{$row} {
+						grid-row: span $row;
+					}
+				}
+			}
+		}
+	}
+}

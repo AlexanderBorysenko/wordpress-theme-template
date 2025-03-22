@@ -1,24 +1,39 @@
 <?php
+use ThemeCore\Services\TemplatingService\ComponentRenderService;
+use ThemeCore\ThemeModules\CarbonFields\CarbonFields;
+use ThemeCore\ThemeModules\DocumentScrollbarWidthCssVariable\DocumentScrollbarWidthCssVariable;
+use ThemeCore\ThemeModules\HotReload\HotReload;
+use ThemeCore\ThemeModules\PageAutoTableOfContetns\PageAutoTableOfContetns;
+use ThemeCore\ThemeModules\Polylang\Polylang;
+use ThemeCore\ThemeModules\ReCaptcha\ReCaptcha;
+use ThemeCore\ThemeModules\ScrollSaver\ScrollSaver;
+use ThemeCore\ThemeModules\ThemeAssetsLoader\ThemeAssetsLoader;
 
 /**
- * c_valley functions and definitions
+ * wp_theme functions and definitions
  *
  * @link https://developer.wordpress.org/themes/basics/theme-functions/
  *
- * @package c_valley
+ * @package wp_theme
  */
 
-require_once get_template_directory() . '/helpers/require-all.php';
-require_all('helpers');
+require_once get_template_directory() . '/ThemeCore/connect.php';
 
+disablePostsPostType();
+disableComments();
 
-require_once get_template_directory() . '/vendor/autoload.php';
-require_once get_template_directory() . '/source/components-core.php';
+ComponentRenderService::defineDomain('default', getThemeСonfig('components.base'));
 
-require_all('includes');
-require_all('source/components', '*.includes.php');
-require_once get_template_directory() . '/carbon/init.php';
+Polylang::initModule(['strings' => getThemeСonfig('translation-strings')]);
+CarbonFields::initModule(getThemeСonfig('carbonfields'));
+ThemeAssetsLoader::initModule(getThemeСonfig('assets'));
+DocumentScrollbarWidthCssVariable::initModule();
+HotReload::initModule(getThemeСonfig('hot-reload'));
+ScrollSaver::initModule();
+ReCaptcha::initModule(getThemeСonfig('recaptcha'));
+PageAutoTableOfContetns::initModule(getThemeСonfig('table-of-contents'));
 
-if (is_admin()) {
-    DevTools\DevTools::getInstance();
-}
+requireAll('includes');
+requireAll(getThemeСonfig('components.base'), '*.includes.php');
+
+require_once get_template_directory() . '/gutenberg/init.php';

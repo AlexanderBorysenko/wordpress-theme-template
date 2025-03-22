@@ -1,0 +1,51 @@
+@use 'sass:list';
+
+@mixin add-layout-alignment-classes($utility-breakpoints: ()) {
+	@if not list.index($utility-breakpoints, 'default') {
+		$utility-breakpoints: list.append(('default'), $utility-breakpoints);
+	}
+
+	@each $breakpoint in $utility-breakpoints {
+		@if $breakpoint != 'default' {
+			@include smaller-than($breakpoint) {
+				.align-#{$breakpoint}-center {
+					align-items: center;
+				}
+				.align-self-#{$breakpoint}-center {
+					align-self: center;
+				}
+				.align-self-#{$breakpoint}-end {
+					align-self: flex-end;
+				}
+				.justify-#{$breakpoint}-center {
+					justify-content: center;
+				}
+				.justify-self-#{$breakpoint}-center {
+					justify-self: center;
+				}
+				.justify-self-#{$breakpoint}-end {
+					justify-self: flex-end;
+				}
+			}
+		} @else {
+			.align-center {
+				align-items: center;
+			}
+			.align-self-center {
+				align-self: center;
+			}
+			.align-self-end {
+				align-self: flex-end;
+			}
+			.justify-center {
+				justify-content: center;
+			}
+			.justify-self-center {
+				justify-self: center;
+			}
+			.justify-self-end {
+				justify-self: flex-end;
+			}
+		}
+	}
+}

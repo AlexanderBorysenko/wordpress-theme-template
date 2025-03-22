@@ -1,0 +1,26 @@
+@include add-utility-classes(
+	'pl',
+	'padding-left',
+	(
+		'default': (
+			'1': var(--size-1),
+			'2': var(--size-2)
+		),
+		'mobile': (
+			'0': 0
+		)
+	)
+);
+@include add-utility-classes(
+	'pr',
+	'padding-right',
+	(
+		'default': (
+			'1': var(--size-1),
+			'2': var(--size-2)
+		),
+		'mobile': (
+			'0': 0
+		)
+	)
+);

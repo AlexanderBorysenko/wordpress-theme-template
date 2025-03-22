@@ -1,24 +1,29 @@
 :root {
-	--header-height: 5.5rem;
+	--header-inner-height: 4.5rem;
+	--header-height: calc(
+		var(--header-inner-height) + var(--preheader-height) +
+			var(--wp-admin--admin-bar--height, 0rem)
+	);
 }
-@media (max-width: 1150px) {
+@include tablet {
 	:root {
-		--header-height: 4.5rem;
+		--header-inner-height: 4rem;
+		--header-height: calc(
+			var(--header-inner-height) + var(--preheader-height)
+		);
 	}
 }
 
 .header {
-	position: fixed;
-	top: 0;
-	left: 0;
-	right: 0;
-	background: #fff;
-	border-bottom: 1px solid #d5dadc;
-	z-index: 10;
 	&__inner {
+		position: relative;
 		display: flex;
 		align-items: center;
-		justify-content: space-between;
-		height: var(--header-height);
+		height: calc(var(--header-inner-height));
+		border-bottom: max(1px, 0.0625rem) solid #d5dadc;
+		padding-left: 0.75rem;
+		@include smaller-than('mobile') {
+			padding-left: 0;
+		}
 	}
 }

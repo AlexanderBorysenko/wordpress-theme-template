@@ -1,0 +1,12 @@
+@include add-utility-classes(
+	'lh',
+	'line-height',
+	(
+		'default': (
+			'104': 104%,
+			'122': 122%,
+			'133': 133%,
+			'144': 144%
+		)
+	)
+);

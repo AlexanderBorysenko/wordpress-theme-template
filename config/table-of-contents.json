@@ -1,0 +1,16 @@
+{
+    "wrappingSubstringPairs": [
+        [
+            "<!-- wp:carbon-fields/page-typography-content-wrapper -->",
+            "<!-- /wp:carbon-fields/page-typography-content-wrapper -->"
+        ],
+        [
+            "<!-- wp:carbon-fields/page-content-wrapper -->",
+            "<!-- /wp:carbon-fields/page-content-wrapper -->"
+        ]
+    ],
+    "postTypes": [
+        "blog",
+        "career"
+    ]
+}

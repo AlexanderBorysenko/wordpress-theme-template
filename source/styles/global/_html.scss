@@ -1,0 +1,24 @@
+html {
+	scroll-behavior: smooth;
+	scrollbar-gutter: stable;
+	overflow-x: clip;
+	font-family: var(--main-font-family);
+	color: var(--deep-dark);
+
+	&._dark {
+		color: var(--semi-grey);
+	}
+
+	margin-top: calc(var(--header-taken-space) + 0.75rem);
+
+	font-size: 16px;
+	@media (max-width: 1728px) {
+		font-size: 0.925925925925926vw;
+	}
+	@include smaller-than('tablet') {
+		font-size: 1.1vw;
+	}
+	@include smaller-than('mobile') {
+		font-size: 5vw;
+	}
+}

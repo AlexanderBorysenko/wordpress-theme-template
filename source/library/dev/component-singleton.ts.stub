@@ -1,0 +1,13 @@
+import SingletonComponent from '~/scripts/Components/SingletonComponent';
+
+export default class {{camelComponentName}} extends SingletonComponent {
+    componentName = '{{componentName}}';
+
+    protected constructDependencies(): void {
+        // Инициализация зависимостей (внутренних компонентов и тп)
+    }
+
+    public init() {
+        // Запуск компонента
+    }
+}

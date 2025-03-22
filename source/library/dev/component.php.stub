@@ -1,0 +1,9 @@
+<?php
+/**
+ * {{componentPrettyName}}
+ */
+?>
+
+<div <?= $htmlAttributesString(['class' => '{{componentName}}']) ?>>
+
+</div>

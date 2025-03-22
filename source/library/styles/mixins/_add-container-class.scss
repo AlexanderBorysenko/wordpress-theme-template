@@ -1,0 +1,51 @@
+@use 'sass:map';
+
+$scrollbar-width: var(--scrollbar-width, 12px) !default;
+@mixin add-container-class(
+	$name,
+	$max-width,
+	$padding: var(--regular-gap, 0.75rem)
+) {
+	:root {
+		// Declaration for default container side paddings
+		--#{$name}-padding: #{$padding};
+
+		// Declaration for original max width of the container
+		--#{$name}-plain-max-width: #{$max-width};
+
+		// Declaration for the max width of the container considering the padding
+		--#{$name}-relative-max-width: min(
+			calc(100% - var(--#{$name}-padding) * 2),
+			var(--#{$name}-plain-max-width)
+		);
+		--#{$name}-viewport-max-width: min(
+			calc(100vw - #{$scrollbar-width} - var(--#{$name}-padding) * 2),
+			var(--#{$name}-plain-max-width)
+		);
+	}
+
+	// Variable to achieve the padding value that should simulate the space to create effect of the container. * is used to make the --parent-container-viewport-width variable available from any selector
+	* {
+		--#{$name}-simulation-padding: calc(
+			(
+					var(
+							--parent-container-viewport-width,
+							calc(100vw - #{$scrollbar-width})
+						) - var(--#{$name}-viewport-max-width) +
+						var(--#{$name}-padding)
+				) / 2
+		);
+	}
+
+	.#{$name} {
+		width: 100%;
+		max-width: var(--#{$name}-relative-max-width);
+		--parent-container-viewport-width: var(--#{$name}-viewport-max-width);
+		margin-left: auto;
+		margin-right: auto;
+
+		&.no-padding {
+			--#{$name}-padding: 0;
+		}
+	}
+}

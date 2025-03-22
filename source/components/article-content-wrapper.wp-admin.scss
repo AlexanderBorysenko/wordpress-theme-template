@@ -1,8 +1,0 @@
-@import 'article-content-wrapper.mixin.scss';
-
-.post-type-blog .is-root-container {
-	max-width: var(--slim-container-width);
-	margin-left: auto;
-	margin-right: auto;
-	@include article-content-wrapper;
-}

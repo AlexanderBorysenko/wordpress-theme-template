@@ -7,7 +7,7 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-files/#template-partials
  *
- * @package c_valley
+ * @package hacon
  */
 
 ?>
@@ -24,3 +24,6 @@
 <?php
 
 component('header-component');
+
+?>
+<main id="main">

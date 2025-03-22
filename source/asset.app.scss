@@ -1,0 +1,22 @@
+@use 'styles/library-provider' as *;
+
+@include add-reset-styles;
+
+@import 'styles/vars';
+
+@import 'styles/library/alignment';
+@import 'styles/library/containers';
+@import 'styles/library/width-limiters';
+@import 'styles/library/font-sizes';
+@import 'styles/library/font-weights';
+@import 'styles/library/line-heights';
+@import 'styles/library/grid';
+@import 'styles/library/margins';
+@import 'styles/library/paddings';
+@import 'styles/library/size-variables';
+@import 'styles/library/swiper';
+
+@import 'styles/global/*.scss';
+
+@import 'components/**/!(*.wp-admin).scss';
+@import '../gutenberg/src/**/!(editor*).scss';

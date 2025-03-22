@@ -10,17 +10,11 @@
  *
  * @link https://developer.wordpress.org/themes/basics/template-hierarchy/
  *
- * @package c_valley
+ * @package hacon
  */
 
 get_header();
 
-?>
-<main>
-    <?php
-    the_content();
-    ?>
-</main>
-<?php
+the_content();
 
 get_footer();

@@ -1,0 +1,15 @@
+{
+    "adminJs": [
+        "source/build/admin-*.js"
+    ],
+    "lazyJs": [],
+    "css": [
+        "source/build/asset.app-*.css"
+    ],
+    "js": [
+        "source/build/asset.app-*.js"
+    ],
+    "adminCss": [
+        "source/build/asset.wp-admin-*.css"
+    ]
+}

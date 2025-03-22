@@ -1,0 +1,7 @@
+@forward '~/library/styles/index' with (
+	$breakpoints: (
+		'medium-desktop': 1680px,
+		'tablet': 1180px,
+		'mobile': 640px
+	)
+);

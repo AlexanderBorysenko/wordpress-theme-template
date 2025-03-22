@@ -5,9 +5,11 @@
  * @param string $class
  * @param array $arrtibutes
  */
+
+$version = filemtime(get_template_directory() . '/source/images/icons.svg');
 ?>
-<svg <?= assemble_html_attributes($props, [
-    'class' => 'svg-icon'
+<svg <?= $htmlAttributesString([
+    'class' => 'svg-icon',
 ]) ?>>
-    <use href="<?= get_template_directory_uri() ?>/source/images/icons.svg#<?= $icon ?>"></use>
+    <use href="<?= get_template_directory_uri() ?>/source/images/icons.svg?v=<?= $version ?>#<?= $icon ?>"></use>
 </svg>
