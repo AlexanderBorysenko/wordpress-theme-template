@@ -7,13 +7,7 @@
  */
 function requireAll(string ...$paths): int
 {
-    $pattern       = '*.php';
     $includedCount = 0;
-
-    // If the last argument is a glob pattern (contains a wildcard), use it.
-    if (!empty($paths) && strpos(end($paths), '*') !== false) {
-        $pattern = array_pop($paths);
-    }
 
     foreach ($paths as $path) {
         if (isFilePath($path)) {
@@ -23,7 +17,7 @@ function requireAll(string ...$paths): int
         }
 
         $fullPath = get_template_directory() . "/$path";
-        $files    = glob("$fullPath/$pattern") ?: [];
+        $files    = glob($fullPath) ?: [];
 
         if (empty($files)) {
             continue;
@@ -48,7 +42,7 @@ function requireAll(string ...$paths): int
  */
 function isFilePath(string $path): bool
 {
-    return strpos($path, '.') !== false;
+    return strpos($path, '.') !== false && strpos($path, '*') === false;
 }
 
 /**

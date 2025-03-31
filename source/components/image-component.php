@@ -17,17 +17,17 @@ if (!empty($reference)) {
     }
     ?>
     <img <?= $htmlAttributesString([
-        'src'    => $image['src'] ?? '',
-        'alt'    => $alt,
-        'width'  => $image['width'] ?? '100',
-        'height' => $image['height'] ?? '100',
-        'srcset' => $image['srcset'] ?? '',
-        'sizes'  => function () use ($image) {
-            if (empty($image['sizes']))
+        'src'     => $image['src'] ?? '',
+        'alt'     => $alt,
+        'width'   => $image['width'] ?? '100',
+        'height'  => $image['height'] ?? '100',
+        'srcset'  => $image['srcset'] ?? '',
+        'sizes'   => function () use ($image) {
+            if (empty($image['sizes']) || empty($image['srcset']))
                 return false;
             return $image['sizes'] ?? '';
         },
-        'lazy'   => $lazy ?? true,
+        'loading' => ($lazy ?? true) ? 'lazy' : 'auto',
     ]) ?>>
     <?php
 }

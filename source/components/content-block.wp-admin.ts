@@ -74,4 +74,7 @@ export const initContentBlocksWpAdmin = (): void => {
     blocks.forEach((block) => {
         new ContentBlockWpAdmin(block);
     });
+    setTimeout(() => {
+        initContentBlocksWpAdmin();
+    }, 500);
 }

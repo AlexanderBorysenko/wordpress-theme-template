@@ -3,11 +3,6 @@ html {
 	scrollbar-gutter: stable;
 	overflow-x: clip;
 	font-family: var(--main-font-family);
-	color: var(--deep-dark);
-
-	&._dark {
-		color: var(--semi-grey);
-	}
 
 	margin-top: calc(var(--header-taken-space) + 0.75rem);
 

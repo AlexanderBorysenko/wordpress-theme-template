@@ -3,11 +3,5 @@ body {
 	overflow-x: clip;
 	line-height: var(--main-line-height);
 	letter-spacing: var(--main-letter-spacing);
-	color: var(--deep-dark);
-	--text-color: var(--deep-dark);
-}
-
-._dark body {
-	color: var(--semi-grey);
-	--text-color: var(--semi-grey);
+	color: var(--main-color);
 }

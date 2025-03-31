@@ -17,6 +17,7 @@
 		line-height: var(--main-line-height);
 	}
 
+	color: var(--main-color);
 	font-family: var(--main-font-family);
 
 	@import 'styles/library/swiper';
@@ -63,6 +64,20 @@
 	width: 400px !important;
 	.interface-complementary-area {
 		width: 100% !important;
+	}
+
+	.cf-container__fields {
+		margin: 0;
+	}
+	.cf-association__cols {
+		flex-direction: column;
+		&::before {
+			display: none;
+		}
+	}
+	.cf-association__col {
+		width: 100%;
+		max-width: 100%;
 	}
 }
 .edit-post-visual-editor .editor-styles-wrapper {

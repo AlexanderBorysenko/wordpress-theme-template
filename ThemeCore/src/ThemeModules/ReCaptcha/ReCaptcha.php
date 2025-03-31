@@ -57,15 +57,15 @@ class ReCaptcha extends ThemeModule
                 // Ensure the recaptcha API script is added only once.
                 function loadRecaptchaScript(callbackName)
                 {
-                    if (!document.querySelector('script[src^="https://www.google.com/recaptcha/api.js"]'))
-                    {
-                        var script = document.createElement('script');
-                        // Use explicit render mode with an onload callback.
-                        script.src = 'https://www.google.com/recaptcha/api.js?onload=' + callbackName + '&render=explicit';
-                        script.defer = true;
-                        script.async = true;
-                        document.head.appendChild(script);
-                    }
+                    if (document.querySelector('script[src^="https://www.google.com/recaptcha/api.js"]')) return;
+
+                    var script = document.createElement('script');
+                    // Use explicit render mode with an onload callback.
+                    script.src = 'https://www.google.com/recaptcha/api.js?onload=' + callbackName + '&render=explicit';
+                    script.defer = true;
+                    script.async = true;
+                    document.head.appendChild(script);
+
                 }
 
                 // Create a hidden container for the reCAPTCHA widget.
@@ -91,8 +91,23 @@ class ReCaptcha extends ThemeModule
                     });
                 };
 
-                // Load the reCAPTCHA script with the specified callback.
-                loadRecaptchaScript('onRecaptchaApiLoad');
+                const loadRecaptchaOnInteraction = () =>
+                {
+                    loadRecaptchaScript('onRecaptchaApiLoad');
+                    // Remove event listeners after loading
+                    document.removeEventListener('mousemove', loadRecaptchaOnInteraction);
+                    document.removeEventListener('click', loadRecaptchaOnInteraction);
+                    document.removeEventListener('scroll', loadRecaptchaOnInteraction);
+                    document.removeEventListener('keydown', loadRecaptchaOnInteraction);
+                    document.removeEventListener('touchstart', loadRecaptchaOnInteraction);
+                };
+
+                // Add event listeners for user interactions
+                document.addEventListener('mousemove', loadRecaptchaOnInteraction);
+                document.addEventListener('click', loadRecaptchaOnInteraction);
+                document.addEventListener('scroll', loadRecaptchaOnInteraction);
+                document.addEventListener('keydown', loadRecaptchaOnInteraction);
+                document.addEventListener('touchstart', loadRecaptchaOnInteraction);
 
                 /**
                  * Retrieves a reCAPTCHA token by executing the already rendered widget.

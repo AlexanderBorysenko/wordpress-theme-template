@@ -117,7 +117,6 @@ class ThemeAssetsLoader extends ThemeModule
         // Target only our theme's CSS handles.
         if (strpos($handle, $prefix) === 0) {
             $html = "<link rel='preload' href='$href' as='style' onload=\"this.onload=null;this.rel='stylesheet'\" media='$media' />";
-            $html .= "<link rel='stylesheet' href='$href'>";
         }
         return $html;
     }

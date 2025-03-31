@@ -1,7 +1,7 @@
 :root {
 	--header-inner-height: 4.5rem;
 	--header-height: calc(
-		var(--header-inner-height) + var(--preheader-height) +
+		var(--header-inner-height) + var(--preheader-height, 0rem) +
 			var(--wp-admin--admin-bar--height, 0rem)
 	);
 }

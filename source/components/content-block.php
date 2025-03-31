@@ -4,7 +4,7 @@
  */
 ?>
 
-<section <?= $htmlAttributesString(['class' => 'content-block container-large']) ?>>
+<section <?= $htmlAttributesString(['class' => 'content-block container']) ?>>
     <?= component(
         'content-block-typography-wrapper',
         ['class' => 'content-block__main'],

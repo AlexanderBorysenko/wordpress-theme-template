@@ -28,10 +28,7 @@ class CarbonFields extends ThemeModule
 
         add_action('carbon_fields_register_fields', function () {
             foreach (self::$config['sources'] as $source) {
-                $fullGlobSourcePath = path_join(get_template_directory(), $source);
-                foreach (glob($fullGlobSourcePath) as $file) {
-                    require_once $file;
-                }
+                requireAll($source);
             }
         });
     }

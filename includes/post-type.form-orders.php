@@ -1,7 +1,7 @@
 <?php
 add_action('init', function () {
     register_post_type('form-orders', [
-        'labels'             => [
+        'labels'              => [
             'name'               => 'Form Orders',
             'singular_name'      => 'Form Order',
             'add_new'            => 'Add New',
@@ -16,16 +16,18 @@ add_action('init', function () {
             'not_found_in_trash' => 'No Form Order found in Trash',
             'parent'             => 'Parent Form Order'
         ],
-        'menu_icon'          => 'dashicons-cart',
-        'supports'           => [
+        'menu_icon'           => 'dashicons-cart',
+        'supports'            => [
             'title',
             'editor'
         ],
-        'hierarchical'       => false,
-        'public'             => true,
-        'menu_position'      => 5,
-        'has_archive'        => false,
-        'publicly_queryable' => false,
-        'show_in_rest'       => false,
+
+        'public'              => false,  // отключает публичный доступ полностью
+        'show_ui'             => true,   // отображается в админке
+        'exclude_from_search' => true,   // исключён из поиска
+        'publicly_queryable'  => false,  // нет публичных страниц и архива
+        'show_in_nav_menus'   => false,  // скрывает из меню навигации
+        'has_archive'         => false,  // нет архива
+        'show_in_rest'        => false,  // отключает REST API
     ]);
 });

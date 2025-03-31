@@ -9,5 +9,5 @@ function getThemeFileUri($pattern)
 {
     $file = getThemeFilePath($pattern);
 
-    return $file ? get_template_directory_uri() . '/' . str_replace(get_template_directory(), '', $file) : '';
+    return $file ? path_join(get_template_directory_uri(), ltrim(str_replace(get_template_directory(), '', $file), '/')) : '';
 }

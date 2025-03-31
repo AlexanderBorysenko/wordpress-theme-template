@@ -4,14 +4,17 @@ use Carbon_Fields\Field;
 
 Block::make('content-block', 'Content Block')
     ->add_fields([
-        Field::make('image', 'image', 'Image'),
+        Field::make('image', 'image', 'Image')->set_conditional_logic([[
+            'field'   => 'orientation',
+            'compare' => '!=',
+            'value'   => '_no-image',
+        ]]),
         getMarginBottomSelectField()->set_attribute('data-toggle-block-class', 'true'),
-        Field::make('select', 'orientation', 'Image Orientation')
-            ->add_options([
-                '_left-image'  => 'Left',
-                '_right-image' => 'Right',
-            ])
-            ->set_default_value('_right-image'),
+        Field::make('select', 'orientation', 'Image Orientation')->add_options([
+            '_left-image'  => 'Left',
+            '_right-image' => 'Right',
+            '_no-image'    => 'No Image',
+        ])->set_default_value('_right-image'),
     ])
     ->set_inner_blocks()
     ->set_inner_blocks_position('below')

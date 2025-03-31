@@ -13,12 +13,24 @@
 	border: 1px solid var(--color-light-grey);
 	padding: 1rem;
 	border-radius: 4px;
-	.cf-block__inner-blocks {
-		order: -1;
-		padding: var(--size-4);
+
+	--main-image-side-padding: 3.125rem;
+	--main-side-padding: 0;
+	--main-vertical-padding: 4.125rem;
+	&._right-image .cf-block__inner-blocks {
+		padding: var(--main-vertical-padding) var(--main-image-side-padding)
+			var(--main-vertical-padding) var(--main-side-padding);
 	}
 	&._left-image .cf-block__inner-blocks {
+		padding: var(--main-vertical-padding) var(--main-side-padding)
+			var(--main-vertical-padding) var(--main-image-side-padding);
 		order: 2;
+	}
+	&._no-image {
+		display: block;
+		.cf-block__inner-blocks {
+			text-align: center;
+		}
 	}
 	.cf-block__preview {
 		grid-column: span 2;
