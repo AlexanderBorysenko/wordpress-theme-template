@@ -3,16 +3,17 @@
 [data-type='carbon-fields/content-block'] {
 	background-color: var(--color-semi-grey);
 	border-radius: 4px;
-	overflow: hidden;
 	position: relative;
 	display: grid;
 	grid-template-columns: 1fr 1fr;
 	gap: 1rem;
 	border: none;
-	max-width: var(--container-large-width);
-	border: 1px solid var(--color-light-grey);
-	padding: 1rem;
-	border-radius: 4px;
+	padding: 2px;
+	overflow: visible;
+	max-width: min(
+		calc(100% - var(--container-padding) * 2),
+		var(--container-plain-max-width)
+	);
 
 	--main-image-side-padding: 3.125rem;
 	--main-side-padding: 0;
@@ -20,11 +21,16 @@
 	&._right-image .cf-block__inner-blocks {
 		padding: var(--main-vertical-padding) var(--main-image-side-padding)
 			var(--main-vertical-padding) var(--main-side-padding);
+		order: -1;
 	}
 	&._left-image .cf-block__inner-blocks {
 		padding: var(--main-vertical-padding) var(--main-side-padding)
 			var(--main-vertical-padding) var(--main-image-side-padding);
 		order: 2;
+	}
+	&:not(._no-image) .cf-block__fields {
+		border: 2px solid #ccc !important;
+		border-radius: 4px;
 	}
 	&._no-image {
 		display: block;
