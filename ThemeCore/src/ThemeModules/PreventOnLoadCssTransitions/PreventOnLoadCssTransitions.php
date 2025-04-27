@@ -46,18 +46,13 @@ class PreventOnLoadCssTransitions extends ThemeModule
      */
     public function init()
     {
-        // Add hot reload script for administrators
-        if (
-            current_user_can('administrator')
-        ) {
-            add_action(
-                'wp_head',
-                function () {
-                    echo $this->getFrontendCode();
-                },
-                1
-            );
-        }
+        add_action(
+            'wp_head',
+            function () {
+                echo $this->getFrontendCode();
+            },
+            1
+        );
     }
 
 }

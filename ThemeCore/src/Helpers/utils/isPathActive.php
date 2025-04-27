@@ -1,12 +1,14 @@
 <?php
-function isPathActive($path)
+function isPathActive($targetPath)
 {
     // remove first and last slash
-    $stripped_path = trim($path, '/');
-    // get current path
-    $current_path = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+    $targetPath = trim($targetPath, '/');
+    $targetPath = rawurlencode($targetPath);
 
-    if ($stripped_path === $current_path) {
+    // get current path
+    $currentPath = trim(parse_url($_SERVER['REQUEST_URI'], PHP_URL_PATH), '/');
+
+    if ($targetPath === $currentPath) {
         return true;
     }
     return false;

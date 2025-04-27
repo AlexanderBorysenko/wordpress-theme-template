@@ -83,7 +83,7 @@ class HotReload extends ThemeModule
         // Add hot reload script for administrators
         if (
             current_user_can('administrator') &&
-            count(getThemeСonfig('hotReloadTriggers', [])) > 0
+            count($this->triggers) > 0
         ) {
             add_action(
                 'wp_head',

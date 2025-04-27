@@ -9,6 +9,7 @@ use ThemeCore\ThemeModules\PreventOnLoadCssTransitions\PreventOnLoadCssTransitio
 use ThemeCore\ThemeModules\ReCaptcha\ReCaptcha;
 use ThemeCore\ThemeModules\ScrollSaver\ScrollSaver;
 use ThemeCore\ThemeModules\ThemeAssetsLoader\ThemeAssetsLoader;
+use ThemeCore\ThemeModules\ThemeDependenciesUpdater\ThemeDependenciesUpdater;
 
 /**
  * wp_theme functions and definitions
@@ -34,6 +35,7 @@ ScrollSaver::initModule();
 ReCaptcha::initModule(getThemeСonfig('recaptcha'));
 PageAutoTableOfContetns::initModule(getThemeСonfig('table-of-contents'));
 PreventOnLoadCssTransitions::initModule();
+ThemeDependenciesUpdater::initModule();
 
 requireAll('includes');
 requireAll(getThemeСonfig('components.base'), '*.includes.php');

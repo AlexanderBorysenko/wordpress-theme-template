@@ -14,6 +14,7 @@ class AutoTableOfContentsProcessor
     private array  $wrappingSubstringPairs;
     private array  $targetHeadingLevels;
     private array  $tocData                = [];
+    private array  $usedIds                = []; // Track used IDs
 
     /**
      * Initialize processor with configuration.
@@ -34,13 +35,15 @@ class AutoTableOfContentsProcessor
      */
     public function processContent(string $content, bool $processAllHeadings = false): string
     {
-        // Reset table of contents data
+        // Reset table of contents data and used IDs
         $this->tocData = [];
+        $this->usedIds = [];
 
         if (trim($content) === '') {
             return $content;
         }
 
+        // Rest of the method remains the same
         $headingTags = array_map(fn($level) => "h{$level}", $this->targetHeadingLevels);
 
         // Build appropriate XPath queries
@@ -77,6 +80,70 @@ class AutoTableOfContentsProcessor
         }
 
         return $dom->saveHTML();
+    }
+
+    /**
+     * Generate a unique ID from text in kebab case.
+     */
+    private function generateUniqueId(string $text): string
+    {
+        // Convert to kebab case - lowercase, replace non-alphanumeric with hyphens
+        $id = strtolower(trim($text));
+        $id = preg_replace('/[^a-z0-9]+/', '-', $id);
+        $id = trim($id, '-');
+
+        if (empty($id)) {
+            $id = 'heading';
+        }
+
+        // Ensure uniqueness
+        $baseId  = $id;
+        $counter = 1;
+
+        while (in_array($id, $this->usedIds, true)) {
+            $id = $baseId . '-' . $counter;
+            $counter++;
+        }
+
+        $this->usedIds[] = $id;
+        return $id;
+    }
+
+    /**
+     * Add IDs to headings that don't have them.
+     */
+    private function addIdsToHeadings(DOMXPath $xpath, string $query): void
+    {
+        $nodes = $xpath->query($query);
+        if ($nodes !== false) {
+            foreach ($nodes as $node) {
+                if (!$node->hasAttribute('id')) {
+                    $node->setAttribute('id', $this->generateUniqueId($node->textContent));
+                } else {
+                    // Track existing IDs to avoid duplicates
+                    $this->usedIds[] = $node->getAttribute('id');
+                }
+            }
+        }
+    }
+
+    /**
+     * Process a single heading node.
+     */
+    private function processHeadingNode(DOMNode $node, array &$collectedIDs): void
+    {
+        if (!$node->hasAttribute('id')) {
+            $node->setAttribute('id', $this->generateUniqueId($node->textContent));
+        }
+
+        $id = $node->getAttribute('id');
+        if (!in_array($id, $collectedIDs, true)) {
+            $this->tocData[] = [
+                'title' => trim($node->textContent),
+                'id'    => $id,
+            ];
+            $collectedIDs[]  = $id;
+        }
     }
 
     /**
@@ -119,21 +186,6 @@ class AutoTableOfContentsProcessor
             implode(' | ', $queryParts),
             implode(' | ', $queryPartsWithId),
         ];
-    }
-
-    /**
-     * Add IDs to headings that don't have them.
-     */
-    private function addIdsToHeadings(DOMXPath $xpath, string $query): void
-    {
-        $nodes = $xpath->query($query);
-        if ($nodes !== false) {
-            foreach ($nodes as $node) {
-                if (!$node->hasAttribute('id')) {
-                    $node->setAttribute('id', 'heading-' . uniqid());
-                }
-            }
-        }
     }
 
     /**
@@ -212,25 +264,6 @@ class AutoTableOfContentsProcessor
             foreach ($descendants as $descendant) {
                 $this->processHeadingNode($descendant, $collectedIDs);
             }
-        }
-    }
-
-    /**
-     * Process a single heading node.
-     */
-    private function processHeadingNode(DOMNode $node, array &$collectedIDs): void
-    {
-        if (!$node->hasAttribute('id')) {
-            $node->setAttribute('id', 'heading-' . uniqid());
-        }
-
-        $id = $node->getAttribute('id');
-        if (!in_array($id, $collectedIDs, true)) {
-            $this->tocData[] = [
-                'title' => trim($node->textContent),
-                'id'    => $id,
-            ];
-            $collectedIDs[]  = $id;
         }
     }
 

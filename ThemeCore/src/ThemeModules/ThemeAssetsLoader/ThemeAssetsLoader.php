@@ -62,6 +62,10 @@ class ThemeAssetsLoader extends ThemeModule
      */
     public function disableDefaultAssets()
     {
+        $bypass = [
+            'wp-block-library',
+        ];
+
         // Skip for logged in users.
         if (is_user_logged_in()) {
             return;
@@ -73,6 +77,11 @@ class ThemeAssetsLoader extends ThemeModule
 
             $deque_styles = [];
             foreach ($wp_styles->queue as $handle) :
+                // Skip the styles that are in the bypass list.
+                if (in_array($handle, $bypass)) {
+                    continue;
+                }
+
                 $deque_styles[] = $handle;
             endforeach;
 
@@ -135,6 +144,18 @@ class ThemeAssetsLoader extends ThemeModule
 
         foreach ($adminCssAssets as $cssAsset) {
             wp_enqueue_style("wp_theme-$cssAsset", getThemeFileUri($cssAsset));
+        }
+    }
+
+    /**
+     * Add Editor styles for the block editor.
+     */
+    public function addEditorStyles()
+    {
+        $editorCssAssets = $this->config['editorCss'];
+
+        foreach ($editorCssAssets as $cssAsset) {
+            wp_enqueue_style("wp_theme-$cssAsset", getThemeFileUri($cssAsset), [], null, 'all');
         }
     }
 
@@ -250,6 +271,13 @@ class ThemeAssetsLoader extends ThemeModule
          */
         add_action('admin_enqueue_scripts', function () {
             $this->enqueueAdminAssets();
+        });
+
+        add_action('enqueue_block_assets', function () {
+            if (!is_admin()) {
+                return;
+            }
+            $this->addEditorStyles();
         });
 
         /**
