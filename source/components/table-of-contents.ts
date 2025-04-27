@@ -1,58 +1,86 @@
-export default  class TableOfContents {
-    private headings: HTMLElement[];
-    private tableOfContents: NodeListOf<HTMLElement>;
+import Component from "~/library/scripts/Components/Component";
 
-    constructor() {
+export default class TableOfContents extends Component {
+    private headings: HTMLElement[];
+    private closestHeading: HTMLElement;
+    private tocList: HTMLElement;
+
+    protected constructDependencies(): void {
+        // Get all headings with IDs
         this.headings = Array.from(
             document.querySelectorAll('h1[id], h2[id], h3[id], h4[id]')
-        );
-        this.tableOfContents = document.querySelectorAll<HTMLElement>('.table-of-contents');
+        ) as HTMLElement[];
+
+        // Get the list inside table of contents
+        this.tocList = this.element.querySelector<HTMLElement>('.table-of-contents__list');
     }
 
-    public static init(): void {
-        const instance = new TableOfContents();
-        if (instance.tableOfContents.length > 0) {
-            let closest: HTMLElement | null = null;
+    public init(): void {
+        // Only proceed if we have headings
+        if (this.headings.length === 0) return;
 
-            window.addEventListener('scroll', () => {
-                closest = instance.getClosestHeading(closest);
-                instance.updateTableOfContents(closest);
-            });
-        }
+        // Initialize closest heading
+        this.updateClosestHeading();
+        this.updateActiveItem();
+
+        // Add scroll event listener
+        window.addEventListener('scroll', this.handleScroll.bind(this));
     }
 
-    private getClosestHeading(closest: HTMLElement | null): HTMLElement | null {
-        this.headings.forEach(heading => {
+    private handleScroll(): void {
+        this.updateClosestHeading();
+        this.updateActiveItem();
+    }
+
+    private updateClosestHeading(): void {
+        let closest: HTMLElement | null = null;
+
+        this.headings.forEach((heading: HTMLElement) => {
             const bounding = heading.getBoundingClientRect();
             if (
                 closest === null ||
                 Math.abs(window.innerHeight / 2 - bounding.top) <
-                Math.abs(window.innerHeight / 2 - closest.getBoundingClientRect().top)
+                Math.abs(
+                    window.innerHeight / 2 -
+                    closest.getBoundingClientRect().top
+                )
             ) {
                 closest = heading;
             }
         });
-        return closest;
+
+        console.log('Closest heading:', closest);
+
+        this.closestHeading = closest;
     }
 
-    private updateTableOfContents(closest: HTMLElement | null): void {
-        this.tableOfContents.forEach(toc => {
-            const tocItems = Array.from(toc.querySelectorAll('.table-of-contents__item'));
-            tocItems.forEach(item => item.classList.remove('_active'));
+    private updateActiveItem(): void {
+        // Remove active class from all items
+        const tocItems = Array.from(
+            this.element.querySelectorAll('.table-of-contents__item')
+        );
+        tocItems.forEach(item => item.classList.remove('_active'));
 
-            if (closest !== null) {
-                const closestTocItem = toc.querySelector<HTMLElement>(
-                    `.table-of-contents__item[data-anchor="${closest.id}"]`
-                );
-                if (closestTocItem !== null) {
-                    closestTocItem.classList.add('_active');
+        // Add active class to closest item
+        if (this.closestHeading !== null) {
+            const closestTocItem = this.element.querySelector<HTMLElement>(
+                `.table-of-contents__item[data-anchor="${this.closestHeading.id}"]`
+            );
 
-                    const tocContainerHeight = toc.getBoundingClientRect().height;
-                    const activeItemHeight = closestTocItem.getBoundingClientRect().height;
+            if (closestTocItem !== null) {
+                closestTocItem.classList.add('_active');
 
-                    toc.scrollTop = closestTocItem.offsetTop - tocContainerHeight / 2 + activeItemHeight / 2;
+                // Handle scroll following if enabled
+                const tocContainerHeight = this.element.getBoundingClientRect().height;
+                const activeItemHeight = closestTocItem.getBoundingClientRect().height;
+
+                const offsetY = (closestTocItem.offsetTop - tocContainerHeight / 2 + activeItemHeight / 2) * -1;
+
+                if (offsetY < 0 &&
+                    Math.abs(offsetY) + tocContainerHeight <= this.tocList.getBoundingClientRect().height) {
+                    this.tocList.style.transform = `translateY(${offsetY}px)`;
                 }
             }
-        });
+        }
     }
 }

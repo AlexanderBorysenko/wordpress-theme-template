@@ -5,6 +5,7 @@ use ThemeCore\ThemeModules\DocumentScrollbarWidthCssVariable\DocumentScrollbarWi
 use ThemeCore\ThemeModules\HotReload\HotReload;
 use ThemeCore\ThemeModules\PageAutoTableOfContetns\PageAutoTableOfContetns;
 use ThemeCore\ThemeModules\Polylang\Polylang;
+use ThemeCore\ThemeModules\PreventOnLoadCssTransitions\PreventOnLoadCssTransitions;
 use ThemeCore\ThemeModules\ReCaptcha\ReCaptcha;
 use ThemeCore\ThemeModules\ScrollSaver\ScrollSaver;
 use ThemeCore\ThemeModules\ThemeAssetsLoader\ThemeAssetsLoader;
@@ -32,6 +33,7 @@ HotReload::initModule(getThemeСonfig('hot-reload'));
 ScrollSaver::initModule();
 ReCaptcha::initModule(getThemeСonfig('recaptcha'));
 PageAutoTableOfContetns::initModule(getThemeСonfig('table-of-contents'));
+PreventOnLoadCssTransitions::initModule();
 
 requireAll('includes');
 requireAll(getThemeСonfig('components.base'), '*.includes.php');

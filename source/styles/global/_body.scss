@@ -4,4 +4,7 @@ body {
 	line-height: var(--main-line-height);
 	letter-spacing: var(--main-letter-spacing);
 	color: var(--main-color);
+
+	margin-top: calc(var(--header-taken-space) + 0.75rem);
+	transition: margin-top 0.3s ease-in-out;
 }

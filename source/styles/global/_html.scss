@@ -4,7 +4,9 @@ html {
 	overflow-x: clip;
 	font-family: var(--main-font-family);
 
-	margin-top: calc(var(--header-taken-space) + 0.75rem);
+	&:not(.allow-transitions) * {
+		transition: none !important;
+	}
 
 	font-size: 16px;
 	@media (max-width: 1728px) {

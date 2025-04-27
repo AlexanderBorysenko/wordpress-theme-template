@@ -10,7 +10,8 @@
 @import 'styles/library/size-variables';
 
 .is-root-container,
-.block-editor-block-preview__container {
+.block-editor-block-preview__container,
+.editor-visual-editor {
 	@include add-reset-styles;
 
 	* {
