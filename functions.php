@@ -2,6 +2,7 @@
 use ThemeCore\Services\TemplatingService\ComponentRenderService;
 use ThemeCore\ThemeModules\CarbonFields\CarbonFields;
 use ThemeCore\ThemeModules\DocumentScrollbarWidthCssVariable\DocumentScrollbarWidthCssVariable;
+use ThemeCore\ThemeModules\EnableSVG\EnableSVG;
 use ThemeCore\ThemeModules\HotReload\HotReload;
 use ThemeCore\ThemeModules\PageAutoTableOfContetns\PageAutoTableOfContetns;
 use ThemeCore\ThemeModules\Polylang\Polylang;
@@ -36,6 +37,7 @@ ReCaptcha::initModule(getThemeСonfig('recaptcha'));
 PageAutoTableOfContetns::initModule(getThemeСonfig('table-of-contents'));
 PreventOnLoadCssTransitions::initModule();
 ThemeDependenciesUpdater::initModule();
+EnableSVG::initModule();
 
 requireAll('includes');
 requireAll(getThemeСonfig('components.base'), '*.includes.php');
